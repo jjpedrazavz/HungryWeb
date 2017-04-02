@@ -5,9 +5,9 @@ namespace HungryWeb.Models3
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class StoreContext3 : DbContext
+    public partial class StoreContext : DbContext
     {
-        public StoreContext3()
+        public StoreContext()
             : base("name=StoreContext3")
         {
         }

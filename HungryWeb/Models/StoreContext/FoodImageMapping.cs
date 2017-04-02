@@ -13,6 +13,8 @@ namespace HungryWeb.Models3
 
         public int? AlimentosID { get; set; }
 
+        public int ImageNumber { get; set; }
+
         public int? AlimentosImageID { get; set; }
 
         public virtual Alimentos Alimentos { get; set; }

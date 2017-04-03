@@ -1,19 +1,26 @@
-﻿@using HungryWeb.Models
-@model LoginViewModel
+﻿@model HungryWeb.Models.LoginViewModel
+
 @{
-    ViewBag.Title = "Iniciar sesión";
+    Layout = null;
 }
 
-<div>
-    <br />
-    <br />
-    <br />
-    <div class="col-md-12">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal jumbotron", role = "form" }))
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <br />
+        <br />
+        <br />
+        <div class="col-md-12">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal jumbotron", role = "form" }))
             {
-                @Html.AntiForgeryToken()
-                <br />
+                    @Html.AntiForgeryToken()
+                    <br />
                     <br />
                     <br />
                     <br />
@@ -45,14 +52,16 @@
                             <input type="submit" value="Iniciar sesión" class="btn btn-default" />
                         </div>
                     </div>
-                    <p class="col-sm-offset-4 col-sm-8">
+                    <p>
                         @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
                     </p>
-            }
-        </section>
+                }
+            </section>
+        </div>
     </div>
-</div>
+</body>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+</html>

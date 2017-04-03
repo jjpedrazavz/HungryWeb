@@ -106,6 +106,7 @@ namespace HungryWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            //buscamos el alimento en base a la ID
             Alimentos alimento = db.Alimentos.Find(id);
 
             if (alimento == null)
@@ -129,6 +130,8 @@ namespace HungryWeb.Controllers
             viewModel.ID = alimento.ID;
             viewModel.Nombre = alimento.Nombre;
             viewModel.Precio = alimento.Precio;
+            viewModel.CategoriaID = alimento.CategoriaID;
+            viewModel.tipoID = alimento.tipoID;
 
 
             return View(viewModel);
@@ -163,10 +166,10 @@ namespace HungryWeb.Controllers
                 {
 
                     //obtenemos la imagen ORIGINAL ligada al producto con base en el numero de formulario.
-                    var originalImageMap = db.FoodImageMapping.Where(p => p.ID == productToUpdate.FoodImageMapping.ElementAt(i).ID).FirstOrDefault();
+                    var originalImageMap = db.FoodImageMapping.Where(p => p.ImageNumber == i).FirstOrDefault();
 
-                    //obtenemos la IMAGEN NUEVA
-                    var currentImage = db.FoodImages.Find(ImagenesProducto[i]);
+                    //obtenemos la IMAGEN NUEVA en base a la ID registrada
+                    var currentImage = db.FoodImages.Find(int.Parse(ImagenesProducto[i]));
 
                     //verificamos si el formulario oriignal estaba nulo
                    if(originalImageMap == null)
@@ -177,15 +180,23 @@ namespace HungryWeb.Controllers
                     {
                         if(originalImageMap.FoodImages.ID != int.Parse(ImagenesProducto[i]))
                         {
-                            productToUpdate.FoodImageMapping.ElementAt(0).FoodImages = currentImage;
+                            originalImageMap.FoodImages = currentImage;
                         }
                     }
-
-
-
-
-
                 }
+
+
+                 //elimina cualquier otra aplicacion de imagen que el usuario no incluyo en sus selecciones para el producto.
+                for (int i = ImagenesProducto.Length; i < Constantes.NumeroImagenes; i++)
+                {
+                    var imageMappingToEdit = productToUpdate.FoodImageMapping.Where(p => p.ImageNumber == i).FirstOrDefault();
+
+                    if (imageMappingToEdit != null)
+                    {
+                        db.FoodImageMapping.Remove(imageMappingToEdit);
+                    }
+                }
+
 
                 db.SaveChanges();
 
@@ -205,12 +216,14 @@ namespace HungryWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alimentos alimentos = db.Alimentos.Find(id);
-            if (alimentos == null)
+
+            Alimentos alimento = db.Alimentos.Find(id);
+
+            if (alimento == null)
             {
                 return HttpNotFound();
             }
-            return View(alimentos);
+            return View(alimento);
         }
 
         // POST: Food/Delete/5

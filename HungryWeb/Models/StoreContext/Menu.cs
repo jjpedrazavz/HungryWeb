@@ -25,17 +25,17 @@ namespace HungryWeb.Models3
 
         public int? bocadilloID { get; set; }
 
-        public virtual Alimentos Alimentos { get; set; }
+        public virtual Alimentos sopa { get; set; }
 
-        public virtual Alimentos Alimentos1 { get; set; }
+        public virtual Alimentos platoFuerte { get; set; }
 
-        public virtual Alimentos Alimentos2 { get; set; }
+        public virtual Alimentos bebida { get; set; }
 
-        public virtual Alimentos Alimentos3 { get; set; }
+        public virtual Alimentos postre { get; set; }
 
-        public virtual Alimentos Alimentos4 { get; set; }
+        public virtual Alimentos complemento { get; set; }
 
-        public virtual Alimentos Alimentos5 { get; set; }
+        public virtual Alimentos bocadillo { get; set; }
 
         public virtual Ordenes Ordenes { get; set; }
     }

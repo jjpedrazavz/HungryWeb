@@ -30,32 +30,32 @@ namespace HungryWeb.Models3
 
             modelBuilder.Entity<Alimentos>()
                 .HasMany(e => e.Menu)
-                .WithOptional(e => e.Alimentos)
+                .WithOptional(e => e.sopa)
                 .HasForeignKey(e => e.bebidaID);
 
             modelBuilder.Entity<Alimentos>()
                 .HasMany(e => e.Menu1)
-                .WithOptional(e => e.Alimentos1)
+                .WithOptional(e => e.platoFuerte)
                 .HasForeignKey(e => e.bocadilloID);
 
             modelBuilder.Entity<Alimentos>()
                 .HasMany(e => e.Menu2)
-                .WithOptional(e => e.Alimentos2)
+                .WithOptional(e => e.bebida)
                 .HasForeignKey(e => e.complementoID);
 
             modelBuilder.Entity<Alimentos>()
                 .HasMany(e => e.Menu3)
-                .WithOptional(e => e.Alimentos3)
+                .WithOptional(e => e.postre)
                 .HasForeignKey(e => e.platoFuerteID);
 
             modelBuilder.Entity<Alimentos>()
                 .HasMany(e => e.Menu4)
-                .WithOptional(e => e.Alimentos4)
+                .WithOptional(e => e.complemento)
                 .HasForeignKey(e => e.postreID);
 
             modelBuilder.Entity<Alimentos>()
                 .HasMany(e => e.Menu5)
-                .WithOptional(e => e.Alimentos5)
+                .WithOptional(e => e.bocadillo)
                 .HasForeignKey(e => e.sopaID);
 
             modelBuilder.Entity<Categorias>()

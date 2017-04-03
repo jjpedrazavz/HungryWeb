@@ -230,6 +230,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AlimentoViewModel.cs" />
+    <Compile Include="ViewModels\OrdenesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -276,6 +277,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SiteScripts\site.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -317,11 +319,10 @@
     <Content Include="Views\Food\Index.cshtml" />
     <Content Include="Views\Shared\_CrearEditarAlimento.cshtml" />
     <Content Include="Views\Account\PanelLogin.cshtml" />
-    <Content Include="Views\Ordenes\Create.cshtml" />
     <Content Include="Views\Ordenes\Delete.cshtml" />
     <Content Include="Views\Ordenes\Details.cshtml" />
-    <Content Include="Views\Ordenes\Edit.cshtml" />
     <Content Include="Views\Ordenes\Index.cshtml" />
+    <Content Include="Views\Ordenes\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

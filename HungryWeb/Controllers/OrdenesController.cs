@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HungryWeb.Models3;
+using HungryWeb.ViewModels;
 
 namespace HungryWeb.Controllers
 {
@@ -28,39 +29,123 @@ namespace HungryWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Ordenes ordenes = db.Ordenes.Find(id);
+
             if (ordenes == null)
             {
                 return HttpNotFound();
             }
+
             return View(ordenes);
         }
 
         // GET: Ordenes/Create
         public ActionResult Create()
         {
-            ViewBag.ComensalID = new SelectList(db.Comensales, "ComensalID", "Nombre");
-            ViewBag.EstadoID = new SelectList(db.Estado, "EstadoID", "Descripcion");
-            return View();
+            OrdenesViewModel viewModel = new OrdenesViewModel();
+
+            viewModel.Estados = new SelectList(db.Estado, "EstadoID", "Descripcion", "");
+            viewModel.MenusSeleccionar = new List<SelectList>();            
+
+                    var sopas = (from element in db.Alimentos
+                            where element.tipoID == 1
+                            select element).ToList();
+
+                viewModel.MenusSeleccionar.Add(new SelectList(sopas, "ID", "Nombre", ""));
+
+            var platosfuertes = (from element in db.Alimentos
+                         where element.tipoID == 3
+                         select element).ToList();
+
+            viewModel.MenusSeleccionar.Add(new SelectList(platosfuertes, "ID", "Nombre",""));
+
+
+
+            var bebidas = (from element in db.Alimentos
+                                 where element.tipoID == 2
+                                 select element).ToList();
+
+            viewModel.MenusSeleccionar.Add(new SelectList(bebidas, "ID", "Nombre", ""));
+
+
+
+            var postres = (from element in db.Alimentos
+                                 where element.tipoID == 4
+                                 select element).ToList();
+
+            viewModel.MenusSeleccionar.Add(new SelectList(postres, "ID", "Nombre", ""));
+
+
+
+            var complementos = (from element in db.Alimentos
+                           where element.tipoID == 5
+                           select element).ToList();
+
+            viewModel.MenusSeleccionar.Add(new SelectList(complementos, "ID", "Nombre", ""));
+
+
+            return View(viewModel);
         }
 
         // POST: Ordenes/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrdenID,ComensalID,EstadoID")] Ordenes ordenes)
+        public ActionResult Create(OrdenesViewModel viewModel)
         {
+            Ordenes orden = new Ordenes();
+
+            //buscamos si existe el comensal.
+            var comensal = db.Comensales.Find(int.Parse(viewModel.ComensalID));
+
+
+            if (comensal != null)
+            {
+                orden.ComensalID = int.Parse(viewModel.ComensalID);
+            }
+            else
+            {
+                throw new Exception("Comensal no existe");
+            }
+
+            orden.EstadoID = int.Parse(viewModel.EstadoID);
+            orden.Menu = new List<Menu>();
+
+            Menu menu = new Menu();
+            menu.OrdenID = orden.OrdenID;
+
+
+            if (!string.IsNullOrWhiteSpace(viewModel.bebidaID))
+                menu.bebidaID = int.Parse(viewModel.bebidaID);
+
+            if (!string.IsNullOrWhiteSpace(viewModel.sopaID))
+                menu.sopaID = int.Parse(viewModel.sopaID);
+
+            if (!string.IsNullOrWhiteSpace(viewModel.platoFuerteID))
+                menu.platoFuerteID = int.Parse(viewModel.platoFuerteID);
+
+            if (!string.IsNullOrWhiteSpace(viewModel.postreID))
+                menu.postreID = int.Parse(viewModel.postreID);
+
+            if (!string.IsNullOrWhiteSpace(viewModel.complementoID))
+                menu.complementoID = int.Parse(viewModel.complementoID);
+
+            if (!string.IsNullOrWhiteSpace(viewModel.bocadilloID))
+                menu.bocadilloID = int.Parse(viewModel.bocadilloID);
+
+
+            orden.Menu.Add(menu);
+
+
             if (ModelState.IsValid)
             {
-                db.Ordenes.Add(ordenes);
+                db.Ordenes.Add(orden);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.ComensalID = new SelectList(db.Comensales, "ComensalID", "Nombre", ordenes.ComensalID);
-            ViewBag.EstadoID = new SelectList(db.Estado, "EstadoID", "Descripcion", ordenes.EstadoID);
-            return View(ordenes);
+             
+            viewModel.Estados = new SelectList(db.Estado, "EstadoID", "Descripcion", orden.EstadoID);
+            return View(orden);
         }
 
         // GET: Ordenes/Edit/5
@@ -81,8 +166,6 @@ namespace HungryWeb.Controllers
         }
 
         // POST: Ordenes/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "OrdenID,ComensalID,EstadoID")] Ordenes ordenes)

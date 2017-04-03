@@ -8,11 +8,12 @@ namespace HungryWeb.Models3
 
     public partial class Ordenes
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        
         public Ordenes()
         {
             Menu = new HashSet<Menu>();
         }
+
 
         [Key]
         public int OrdenID { get; set; }
@@ -25,7 +26,6 @@ namespace HungryWeb.Models3
 
         public virtual Estado Estado { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Menu> Menu { get; set; }
     }
 }

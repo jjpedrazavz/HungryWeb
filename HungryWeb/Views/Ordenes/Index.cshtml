@@ -4,11 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ordenes</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -29,7 +26,6 @@
             @Html.DisplayFor(modelItem => item.Estado.Descripcion)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrdenID }) |
             @Html.ActionLink("Details", "Details", new { id=item.OrdenID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.OrdenID })
         </td>

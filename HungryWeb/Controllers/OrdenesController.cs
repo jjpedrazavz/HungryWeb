@@ -30,14 +30,42 @@ namespace HungryWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Ordenes ordenes = db.Ordenes.Find(id);
+            Ordenes orden = db.Ordenes.Find(id);
 
-            if (ordenes == null)
+            if (orden == null)
             {
                 return HttpNotFound();
             }
 
-            return View(ordenes);
+            DetailedOrderViewModel details = new DetailedOrderViewModel();
+
+            details.OrdenID = orden.OrdenID;
+
+            details.estado = db.Estado.Find(orden.EstadoID);
+            details.comensal = db.Comensales.Find(orden.ComensalID);
+
+            var MenuActual = db.Menu.Find(orden.Menu.Where(m => m.OrdenID == orden.OrdenID).Select( m => m.MenuID));
+
+            if(!string.IsNullOrWhiteSpace(MenuActual.bebidaID.ToString()))
+            MenuActual.bebida = db.Alimentos.Find(MenuActual.bebidaID);
+
+            if (!string.IsNullOrWhiteSpace(MenuActual.sopaID.ToString()))
+                MenuActual.sopa = db.Alimentos.Find(MenuActual.sopaID);
+
+            if (!string.IsNullOrWhiteSpace(MenuActual.platoFuerteID.ToString()))
+                MenuActual.platoFuerte = db.Alimentos.Find(MenuActual.platoFuerteID);
+
+            if (!string.IsNullOrWhiteSpace(MenuActual.postreID.ToString()))
+                MenuActual.postre = db.Alimentos.Find(MenuActual.postreID);
+
+            if (!string.IsNullOrWhiteSpace(MenuActual.bocadilloID.ToString()))
+                MenuActual.bocadillo = db.Alimentos.Find(MenuActual.bocadilloID);
+
+            if (!string.IsNullOrWhiteSpace(MenuActual.complementoID.ToString()))
+                MenuActual.complemento = db.Alimentos.Find(MenuActual.complementoID);
+
+
+            return View(details);
         }
 
         // GET: Ordenes/Create
@@ -105,7 +133,7 @@ namespace HungryWeb.Controllers
             }
             else
             {
-                throw new Exception("Comensal no existe");
+                return HttpNotFound();
             }
 
             orden.EstadoID = int.Parse(viewModel.EstadoID);
@@ -206,6 +234,7 @@ namespace HungryWeb.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

@@ -198,6 +198,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Constantes.cs" />
     <Compile Include="Controllers\FoodController.cs" />
+    <Compile Include="Controllers\FoodImagesController.cs" />
     <Compile Include="Controllers\OrdenesController.cs" />
     <Compile Include="Migrations\201704020713129_InitialCreate.cs" />
     <Compile Include="Migrations\201704020713129_InitialCreate.Designer.cs">
@@ -230,6 +231,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AlimentoViewModel.cs" />
+    <Compile Include="ViewModels\DetailedOrderViewModel.cs" />
     <Compile Include="ViewModels\OrdenesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +325,11 @@
     <Content Include="Views\Ordenes\Details.cshtml" />
     <Content Include="Views\Ordenes\Index.cshtml" />
     <Content Include="Views\Ordenes\Create.cshtml" />
+    <Content Include="Views\FoodImages\Create.cshtml" />
+    <Content Include="Views\FoodImages\Delete.cshtml" />
+    <Content Include="Views\FoodImages\Details.cshtml" />
+    <Content Include="Views\FoodImages\Edit.cshtml" />
+    <Content Include="Views\FoodImages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

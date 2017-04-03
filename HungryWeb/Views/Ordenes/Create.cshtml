@@ -36,7 +36,7 @@
                             <br />
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    @Html.DropDownList("sopasSelect", Model.MenusSeleccionar[0], "Seleccione una Sopa", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.sopaID, Model.MenusSeleccionar[0], "Seleccione una Sopa", htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.sopaID, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                             <br />
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    @Html.DropDownList("platofuerteSelect", Model.MenusSeleccionar[1], "Seleccione un Plato Fuerte", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.platoFuerteID, Model.MenusSeleccionar[1], "Seleccione un Plato Fuerte", htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.platoFuerteID, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                             <br />
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    @Html.DropDownList("bebidaSelect", Model.MenusSeleccionar[2], "Seleccione una Bebida", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.bebidaID, Model.MenusSeleccionar[2], "Seleccione una Bebida", htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.bebidaID, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                             <br />
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    @Html.DropDownList("postreSelect", Model.MenusSeleccionar[3], "Seleccione un Postre", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.postreID, Model.MenusSeleccionar[3], "Seleccione un Postre", htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.postreID, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                             <br />
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    @Html.DropDownList("AlimentosSelec", Model.MenusSeleccionar[4], "Seleccione un complemento", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.complementoID, Model.MenusSeleccionar[4], "Seleccione un complemento", htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.complementoID, "", new { @class = "text-danger" })
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-﻿@model HungryWeb.Models3.Ordenes
+﻿@model HungryWeb.Models3.FoodImages
 
 @{
     ViewBag.Title = "Delete";
@@ -6,25 +6,17 @@
 
 <h2>Delete</h2>
 
-<h3>Esta seguro de eliminar esta Orden?</h3>
+<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Ordenes</h4>
+    <h4>FoodImages</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Comensales.Nombre)
+            @Html.DisplayNameFor(model => model.NameFile)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Comensales.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estado.Descripcion)
+            @Html.DisplayFor(model => model.NameFile)
         </dd>
 
     </dl>

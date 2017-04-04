@@ -10,11 +10,22 @@ namespace HungryWeb.ViewModels
 {
     public class DetailedOrderViewModel
     {
+ 
         public int OrdenID { get; set; }
 
         public Estado estado { get; set; }
 
-        public Menu menu { get; set; }
+        public Alimentos sopa { get; set; }
+
+        public Alimentos platoFuerte { get; set; }
+
+        public Alimentos bebida { get; set; }
+
+        public Alimentos postre { get; set; }
+
+        public Alimentos complemento { get; set; }
+
+        public Alimentos bocadillo { get; set; }
 
         public Comensales comensal { get; set; }
 

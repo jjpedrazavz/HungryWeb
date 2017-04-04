@@ -44,42 +44,57 @@ namespace HungryWeb.Controllers
             details.estado = db.Estado.Find(orden.EstadoID);
             details.comensal = db.Comensales.Find(orden.ComensalID);
 
-            var MenuActual = db.Menu.Find(orden.Menu.FirstOrDefault().MenuID);
+            var MenuActual = orden.Menu.FirstOrDefault();
 
-            if(MenuActual !=null)
+
+            if (MenuActual != null)
             {
-                details.menu = MenuActual;
+
+                if (MenuActual.bebidaID != null)
+                {
+                    details.bebida = db.Alimentos.Find(MenuActual.bebidaID);
+                    details.totalMenu += (double)details.bebida.Precio;
+                }
+
+
+                if (MenuActual.sopaID != null)
+                {
+                    details.sopa = db.Alimentos.Find(MenuActual.sopaID);
+                    details.totalMenu += (double)details.sopa.Precio;
+                }
+
+
+                if (MenuActual.platoFuerteID != null)
+                {
+                    details.platoFuerte = db.Alimentos.Find(MenuActual.platoFuerteID);
+                    details.totalMenu += (double)details.platoFuerte.Precio;
+                }
+
+                if (MenuActual.postreID != null)
+                {
+                    details.postre = db.Alimentos.Find(MenuActual.postreID);
+                    details.totalMenu += (double)details.postre.Precio;
+                }
+
+                if (MenuActual.bocadilloID != null)
+                {
+                    details.bocadillo = db.Alimentos.Find(MenuActual.bocadilloID);
+                    details.totalMenu += (double)details.bocadillo.Precio;
+                }
+
+
+            if (MenuActual.complementoID != null)
+                {
+                    details.complemento = db.Alimentos.Find(MenuActual.complementoID);
+                    details.totalMenu += (double)details.complemento.Precio;
+                }
+
             }
             else
             {
                 return HttpNotFound();
             }
 
-            if(!string.IsNullOrWhiteSpace(MenuActual.bebidaID.ToString()))
-                MenuActual.bebida = db.Alimentos.Find(MenuActual.bebidaID);
-                details.totalMenu += (double)MenuActual.bebida.Precio;
-
-            if (!string.IsNullOrWhiteSpace(MenuActual.sopaID.ToString()))
-                MenuActual.sopa = db.Alimentos.Find(MenuActual.sopaID);
-                details.totalMenu += (double)MenuActual.sopa.Precio;
-
-            if (!string.IsNullOrWhiteSpace(MenuActual.platoFuerteID.ToString()))
-                MenuActual.platoFuerte = db.Alimentos.Find(MenuActual.platoFuerteID);
-                details.totalMenu += (double)MenuActual.platoFuerte.Precio;
-
-            if (!string.IsNullOrWhiteSpace(MenuActual.postreID.ToString()))
-                MenuActual.postre = db.Alimentos.Find(MenuActual.postreID);
-                details.totalMenu += (double)MenuActual.postre.Precio;
-
-            if (!string.IsNullOrWhiteSpace(MenuActual.bocadilloID.ToString()))
-                MenuActual.bocadillo = db.Alimentos.Find(MenuActual.bocadilloID);
-                details.totalMenu += (double)MenuActual.bocadillo.Precio;
-
-            if (!string.IsNullOrWhiteSpace(MenuActual.complementoID.ToString()))
-                MenuActual.complemento = db.Alimentos.Find(MenuActual.complementoID);
-                details.totalMenu += (double)MenuActual.complemento.Precio;
-
-            
 
             return View(details);
         }
@@ -90,9 +105,11 @@ namespace HungryWeb.Controllers
             OrdenesViewModel viewModel = new OrdenesViewModel();
 
             viewModel.Estados = new SelectList(db.Estado, "EstadoID", "Descripcion", "");
-            viewModel.MenusSeleccionar = new List<SelectList>();            
+            viewModel.MenusSeleccionar = new List<SelectList>();
 
-                    var sopas = (from element in db.Alimentos
+
+
+            var sopas = (from element in db.Alimentos
                             where element.tipoID == 1
                             select element).ToList();
 
@@ -192,38 +209,6 @@ namespace HungryWeb.Controllers
             return View(orden);
         }
 
-        // GET: Ordenes/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ordenes ordenes = db.Ordenes.Find(id);
-            if (ordenes == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ComensalID = new SelectList(db.Comensales, "ComensalID", "Nombre", ordenes.ComensalID);
-            ViewBag.EstadoID = new SelectList(db.Estado, "EstadoID", "Descripcion", ordenes.EstadoID);
-            return View(ordenes);
-        }
-
-        // POST: Ordenes/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrdenID,ComensalID,EstadoID")] Ordenes ordenes)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(ordenes).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.ComensalID = new SelectList(db.Comensales, "ComensalID", "Nombre", ordenes.ComensalID);
-            ViewBag.EstadoID = new SelectList(db.Estado, "EstadoID", "Descripcion", ordenes.EstadoID);
-            return View(ordenes);
-        }
 
         // GET: Ordenes/Delete/5
         public ActionResult Delete(int? id)
@@ -233,6 +218,7 @@ namespace HungryWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Ordenes ordenes = db.Ordenes.Find(id);
+
             if (ordenes == null)
             {
                 return HttpNotFound();
@@ -250,7 +236,6 @@ namespace HungryWeb.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
 
         protected override void Dispose(bool disposing)
         {

@@ -38,5 +38,17 @@ namespace HungryWeb.Models3
         public virtual Alimentos bocadillo { get; set; }
 
         public virtual Ordenes Ordenes { get; set; }
+
+
+        public override string ToString()
+        {
+
+            return string.Format("MID:{0} ORID:{1} s:{2} pl:{3} b:{4} p:{5} c:{6} b:{7}", MenuID, OrdenID, sopaID, platoFuerteID, bebidaID, postreID, complementoID, bocadilloID);
+        }
+
+
     }
+
+    
+
 }

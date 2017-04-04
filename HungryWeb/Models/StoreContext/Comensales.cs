@@ -15,6 +15,7 @@ namespace HungryWeb.Models3
         }
 
         [Key]
+        [Display(Name ="Comensal")]
         public int ComensalID { get; set; }
 
         [Required]

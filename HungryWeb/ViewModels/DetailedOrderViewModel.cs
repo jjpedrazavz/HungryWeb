@@ -10,7 +10,7 @@ namespace HungryWeb.ViewModels
 {
     public class DetailedOrderViewModel
     {
- 
+       [Display(Name ="Numero de Orden")]
         public int OrdenID { get; set; }
 
         public Estado estado { get; set; }

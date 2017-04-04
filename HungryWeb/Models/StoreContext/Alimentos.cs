@@ -32,8 +32,6 @@ namespace HungryWeb.Models3
 
         public int tipoID { get; set; }
 
-        public int? FoodImageMappingID { get; set; }
-
         public virtual Categorias Categorias { get; set; }
         public virtual ICollection<FoodImageMapping> FoodImageMapping { get; set; }
 

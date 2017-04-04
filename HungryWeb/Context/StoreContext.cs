@@ -8,7 +8,7 @@ namespace HungryWeb.Models3
     public partial class StoreContext : DbContext
     {
         public StoreContext()
-            : base("name=StoreContext3")
+            : base("name=StoreContext4")
         {
         }
 

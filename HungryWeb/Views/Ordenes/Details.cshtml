@@ -1,0 +1,137 @@
+﻿@model HungryWeb.ViewModels.DetailedOrderViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Orden</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.comensal.ComensalID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comensal.ComensalID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado.Descripcion)
+        </dd>
+    </dl>
+
+    <div class="jumbotron">
+        
+        <h3>Descripcion de la orden</h3>
+
+        <table class="table">
+
+            <tr>
+                <th>
+                    @Html.DisplayName("Platillo")
+                </th>
+                <th>
+                    @Html.DisplayName("Precio")
+                </th>
+            </tr>
+
+            <tr>
+                @if (Model.menu.sopa != null)
+                {
+                    <td>
+                        @Html.DisplayFor(model => model.menu.sopa.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.menu.sopa.Precio)
+                    </td>
+
+                }
+
+            </tr>
+
+            <tr>
+                @if (Model.menu.platoFuerte != null)
+                {
+                    <td>
+                        @Html.DisplayFor(model => model.menu.platoFuerte.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.menu.platoFuerte.Precio)
+                    </td>
+                }
+            </tr>
+
+            <tr>
+                @if (Model.menu.bebida != null)
+                {
+                    <td>
+                        @Html.DisplayFor(model => model.menu.bebida.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.menu.bebida.Precio)
+                    </td>
+                }
+            </tr>
+
+            <tr>
+                @if (Model.menu.postre != null)
+                {
+                    <td>
+                        @Html.DisplayFor(model => model.menu.postre.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.menu.postre.Precio)
+                    </td>
+                }
+            </tr>
+
+            <tr>
+                @if (Model.menu.complemento != null)
+                {
+                    <td>
+                        @Html.DisplayFor(model => model.menu.complemento.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.menu.complemento.Precio)
+                    </td>
+                }
+            </tr>
+
+            <tr>
+                @if (Model.menu.bocadillo != null)
+                {
+                    <td>
+                        @Html.DisplayFor(model => model.menu.bocadillo.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.menu.bocadillo.Precio)
+                    </td>
+                }
+            </tr>
+
+
+        </table>
+
+
+
+    </div>
+
+    <hr />
+    <div class="list-inline">
+        <h5>Total: </h5> <h5>@Model.totalMenu</h5>
+    </div>
+    <div class="list-inline">
+        <button type="button" class="btn btn-primary">Cambiar estado</button>
+    </div>
+
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

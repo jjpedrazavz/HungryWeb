@@ -1,0 +1,154 @@
+﻿@model HungryWeb.ViewModels.OrdenesViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Levantar Orden</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComensalID, "ComensalID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(mod => Model.ComensalID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ComensalID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <ul>
+            <li>
+                <div>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#SopasSection" id="sopasButton">
+                        Sopas
+                    </button>
+                    <div class="collapse" id="SopasSection">
+                        <div class="well">
+                            <br />
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.sopaID, Model.MenusSeleccionar[0], "Seleccione una Sopa", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.sopaID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#PlatosFuertesSection" id="PlatosFuertesButton">
+                        Platos Fuertes
+                    </button>
+                    <div class="collapse" id="PlatosFuertesSection">
+                        <div class="well">
+                            <br />
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.platoFuerteID, Model.MenusSeleccionar[1], "Seleccione un Plato Fuerte", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.platoFuerteID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#PostresSection" id="PostresButton">
+                        Bebidas
+                    </button>
+                    <div class="collapse" id="PostresSection">
+                        <div class="well">
+                            <br />
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.bebidaID, Model.MenusSeleccionar[2], "Seleccione una Bebida", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.bebidaID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#BebidasSection" id="BebidasButton">
+                        Postres
+                    </button>
+                    <div class="collapse" id="BebidasSection">
+                        <div class="well">
+                            <br />
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.postreID, Model.MenusSeleccionar[3], "Seleccione un Postre", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.postreID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#ComplementoSection" id="ComplementoButton">
+                        Complementos
+                    </button>
+                    <div class="collapse" id="ComplementoSection">
+                        <div class="well">
+                            <br />
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.complementoID, Model.MenusSeleccionar[4], "Seleccione un complemento", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.complementoID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EstadoID, "Estado Orden", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(md => md.EstadoID, Model.Estados, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EstadoID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquerySite")
+}

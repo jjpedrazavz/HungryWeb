@@ -1,0 +1,54 @@
+﻿@model HungryWeb.Models3.Alimentos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Registro</h2>
+
+<h3>Esta seguro de eliminar el siguiente Registro?</h3>
+<div>
+    <h4>Alimentos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorias.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorias.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipos.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipos.Nombre)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

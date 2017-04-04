@@ -44,26 +44,42 @@ namespace HungryWeb.Controllers
             details.estado = db.Estado.Find(orden.EstadoID);
             details.comensal = db.Comensales.Find(orden.ComensalID);
 
-            var MenuActual = db.Menu.Find(orden.Menu.Where(m => m.OrdenID == orden.OrdenID).Select( m => m.MenuID));
+            var MenuActual = db.Menu.Find(orden.Menu.FirstOrDefault().MenuID);
+
+            if(MenuActual !=null)
+            {
+                details.menu = MenuActual;
+            }
+            else
+            {
+                return HttpNotFound();
+            }
 
             if(!string.IsNullOrWhiteSpace(MenuActual.bebidaID.ToString()))
-            MenuActual.bebida = db.Alimentos.Find(MenuActual.bebidaID);
+                MenuActual.bebida = db.Alimentos.Find(MenuActual.bebidaID);
+                details.totalMenu += (double)MenuActual.bebida.Precio;
 
             if (!string.IsNullOrWhiteSpace(MenuActual.sopaID.ToString()))
                 MenuActual.sopa = db.Alimentos.Find(MenuActual.sopaID);
+                details.totalMenu += (double)MenuActual.sopa.Precio;
 
             if (!string.IsNullOrWhiteSpace(MenuActual.platoFuerteID.ToString()))
                 MenuActual.platoFuerte = db.Alimentos.Find(MenuActual.platoFuerteID);
+                details.totalMenu += (double)MenuActual.platoFuerte.Precio;
 
             if (!string.IsNullOrWhiteSpace(MenuActual.postreID.ToString()))
                 MenuActual.postre = db.Alimentos.Find(MenuActual.postreID);
+                details.totalMenu += (double)MenuActual.postre.Precio;
 
             if (!string.IsNullOrWhiteSpace(MenuActual.bocadilloID.ToString()))
                 MenuActual.bocadillo = db.Alimentos.Find(MenuActual.bocadilloID);
+                details.totalMenu += (double)MenuActual.bocadillo.Precio;
 
             if (!string.IsNullOrWhiteSpace(MenuActual.complementoID.ToString()))
                 MenuActual.complemento = db.Alimentos.Find(MenuActual.complementoID);
+                details.totalMenu += (double)MenuActual.complemento.Precio;
 
+            
 
             return View(details);
         }

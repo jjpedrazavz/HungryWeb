@@ -19,6 +19,7 @@ namespace HungryWeb.Models3
 
         [Required]
         [StringLength(20)]
+        [Display(Name ="Estatus")]
         public string Descripcion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

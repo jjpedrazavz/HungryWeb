@@ -10,9 +10,11 @@ namespace HungryWeb.ViewModels
 {
     public class OrdenesViewModel
     {
+        [Display(Name ="Numero Orden")]
         public int OrdenID { get; set; }
 
         [Required]
+        [Display(Name ="Comensal")]
         public string ComensalID { get; set; }
 
         [Required]

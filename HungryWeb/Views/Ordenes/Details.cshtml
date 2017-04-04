@@ -7,25 +7,33 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Orden</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.comensal.ComensalID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.comensal.ComensalID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.estado.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.estado.Descripcion)
-        </dd>
-    </dl>
+    <div>
+        <h4>Orden</h4>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrdenID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.comensal.ComensalID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.estado.Descripcion)
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.OrdenID)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.comensal.ComensalID)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.estado.Descripcion)
+                </td>
+            </tr>
+        </table>
+    </div>
 
     <div class="jumbotron">
         
@@ -117,20 +125,25 @@
             </tr>
 
 
+            <tr>
+                <td>
+                    <strong>  Total: </strong>
+               </td>
+                <td>
+                    <strong> @Model.totalMenu </strong>
+                </td>
+            </tr>
+
         </table>
 
 
 
     </div>
-
     <hr />
-    <div class="list-inline">
-        <h5>Total: </h5> <h5>@Model.totalMenu</h5>
+    <div id="changeState">
+        <button type="button" class="btn btn-primary float-md-right">Cambiar estado</button>
     </div>
-    <div class="list-inline">
-        <button type="button" class="btn btn-primary">Cambiar estado</button>
-    </div>
-
+    <br />
 </div>
 <p>
     @Html.ActionLink("Back to List", "Index")

@@ -42,8 +42,6 @@ namespace HungryWeb.Controllers
         }
 
         // POST: FoodImages/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,NameFile")] FoodImages foodImages)
@@ -74,8 +72,6 @@ namespace HungryWeb.Controllers
         }
 
         // POST: FoodImages/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,NameFile")] FoodImages foodImages)

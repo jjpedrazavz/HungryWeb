@@ -24,7 +24,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Ordenes", "Index", "Ordenes")</li>
                     <li>@Html.ActionLink("Alimentos", "Index", "Food")</li>
-                    <li>@Html.ActionLink("Ajustes", "Index", "Ordenes")</li>
+                    <li>@Html.ActionLink("Ajustes", "Index", "FoodImages")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Proyecto Hungry</p>
         </footer>
     </div>
 

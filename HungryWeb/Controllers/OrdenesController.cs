@@ -107,8 +107,6 @@ namespace HungryWeb.Controllers
             viewModel.Estados = new SelectList(db.Estado, "EstadoID", "Descripcion", "");
             viewModel.MenusSeleccionar = new List<SelectList>();
 
-
-
             var sopas = (from element in db.Alimentos
                             where element.tipoID == 1
                             select element).ToList();

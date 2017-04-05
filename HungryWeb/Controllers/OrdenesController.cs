@@ -53,13 +53,13 @@ namespace HungryWeb.Controllers
             viewModel.MenusSeleccionar = new List<SelectList>();
 
             var sopas = (from element in db.Alimentos
-                         where element.tipoID == 1
+                         where element.TipoId == 1
                          select element).ToList();
 
             viewModel.MenusSeleccionar.Add(new SelectList(sopas, "ID", "Nombre", ""));
 
             var platosfuertes = (from element in db.Alimentos
-                                 where element.tipoID == 3
+                                 where element.TipoId == 3
                                  select element).ToList();
 
             viewModel.MenusSeleccionar.Add(new SelectList(platosfuertes, "ID", "Nombre", ""));
@@ -67,7 +67,7 @@ namespace HungryWeb.Controllers
 
 
             var bebidas = (from element in db.Alimentos
-                           where element.tipoID == 2
+                           where element.TipoId == 2
                            select element).ToList();
 
             viewModel.MenusSeleccionar.Add(new SelectList(bebidas, "ID", "Nombre", ""));
@@ -75,7 +75,7 @@ namespace HungryWeb.Controllers
 
 
             var postres = (from element in db.Alimentos
-                           where element.tipoID == 4
+                           where element.TipoId == 4
                            select element).ToList();
 
             viewModel.MenusSeleccionar.Add(new SelectList(postres, "ID", "Nombre", ""));
@@ -83,7 +83,7 @@ namespace HungryWeb.Controllers
 
 
             var complementos = (from element in db.Alimentos
-                                where element.tipoID == 5
+                                where element.TipoId == 5
                                 select element).ToList();
 
             viewModel.MenusSeleccionar.Add(new SelectList(complementos, "ID", "Nombre", ""));

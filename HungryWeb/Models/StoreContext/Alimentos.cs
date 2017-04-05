@@ -20,20 +20,20 @@ namespace HungryWeb.Models3
             Menu5 = new HashSet<Menu>();
         }
 
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(80)]
         public string Nombre { get; set; }
 
-        public int CategoriaID { get; set; }
+        public int CategoriaId { get; set; }
 
         [Column(TypeName = "numeric")]
         public decimal Precio { get; set; }
 
-        public int tipoID { get; set; }
+        public int TipoId { get; set; }
 
-        public virtual Categorias Categorias { get; set; }
+        public virtual Categorias Categoria { get; set; }
 
         public virtual ICollection<FoodImageMapping> FoodImageMapping { get; set; }
 
@@ -55,6 +55,6 @@ namespace HungryWeb.Models3
         [JsonIgnore]
         public virtual ICollection<Menu> Menu5 { get; set; }
 
-        public virtual Tipos Tipos { get; set; }
+        public virtual Tipos Tipo { get; set; }
     }
 }

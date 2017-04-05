@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HungryWeb.Models3;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +7,7 @@ using System.Web.Mvc;
 
 namespace HungryWeb.ViewModels
 {
-    public class AlimentoViewModel
+    public class FoodViewModel
     {
 
         public int ID { get; set; }
@@ -18,15 +19,19 @@ namespace HungryWeb.ViewModels
 
         public int tipoID { get; set; }
 
-        public int? FoodImageMappingID { get; set; }
-
-
+        public int SelectedImage { get; set; }
 
         public SelectList Categories { get; set; }
 
         public SelectList Tipos { get; set; }
 
         public List<SelectList> ImagenesSeleccionadas { get; set; }
+
+        public IEnumerable<FoodImages> ImagenesStock { get; set; }
+
+        public IEnumerable<Categorias> CategoriasStock { get; set; }
+
+        public IEnumerable<Tipos> TiposStock { get; set; }
 
         public string[] ImagenesProducto { get; set; }
 

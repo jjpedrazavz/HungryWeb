@@ -8,7 +8,6 @@ namespace HungryWeb.Models3
 
     public partial class Categorias
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Categorias()
         {
             Alimentos = new HashSet<Alimentos>();
@@ -22,7 +21,6 @@ namespace HungryWeb.Models3
         [Display(Name = "Categoria")]
         public string Nombre { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Alimentos> Alimentos { get; set; }
     }
 }

@@ -61,6 +61,15 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/{0}.
+        /// </summary>
+        internal static string GetAlimento {
+            get {
+                return ResourceManager.GetString("GetAlimento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/.
         /// </summary>
         internal static string GetAllFood {

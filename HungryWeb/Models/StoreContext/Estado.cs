@@ -9,7 +9,6 @@ namespace HungryWeb.Models3
     [Table("Estado")]
     public partial class Estado
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Estado()
         {
             Ordenes = new HashSet<Ordenes>();
@@ -22,7 +21,7 @@ namespace HungryWeb.Models3
         [Display(Name ="Estatus")]
         public string Descripcion { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         public virtual ICollection<Ordenes> Ordenes { get; set; }
     }
 }

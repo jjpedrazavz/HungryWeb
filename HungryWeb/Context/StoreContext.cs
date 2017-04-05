@@ -60,7 +60,7 @@ namespace HungryWeb.Models3
 
             modelBuilder.Entity<Categorias>()
                 .HasMany(e => e.Alimentos)
-                .WithRequired(e => e.Categorias)
+                .WithRequired(e => e.Categoria)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Comensales>()
@@ -80,7 +80,7 @@ namespace HungryWeb.Models3
 
             modelBuilder.Entity<Tipos>()
                 .HasMany(e => e.Alimentos)
-                .WithRequired(e => e.Tipos)
+                .WithRequired(e => e.Tipo)
                 .WillCascadeOnDelete(false);
         }
     }

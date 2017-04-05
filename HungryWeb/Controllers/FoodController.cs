@@ -35,7 +35,7 @@ namespace HungryWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Alimentos alimento = await _service.GetDetailedFood(id.Value);
+            FoodViewModel alimento = await _service.GetDetailedFood(id.Value);
 
             if (alimento == null)
             {
@@ -47,7 +47,7 @@ namespace HungryWeb.Controllers
         // GET: Food/Create
         public ActionResult Create()
         {
-            AlimentoViewModel viewModel = new AlimentoViewModel();
+            FoodViewModel viewModel = new FoodViewModel();
             viewModel.Categories = new SelectList(db.Categorias, "CategoriaID", "Nombre");
             viewModel.Tipos = new SelectList(db.Tipos, "TipoID", "Nombre");
             viewModel.ImagenesSeleccionadas = new List<SelectList>();
@@ -67,14 +67,14 @@ namespace HungryWeb.Controllers
         // POST: Food/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(AlimentoViewModel viewModel)
+        public ActionResult Create(FoodViewModel viewModel)
         {
             Alimentos alimento = new Alimentos();
 
-            alimento.CategoriaID = viewModel.CategoriaID;
+            alimento.CategoriaId = viewModel.CategoriaID;
             alimento.Nombre = viewModel.Nombre;
             alimento.Precio = viewModel.Precio;
-            alimento.tipoID = viewModel.tipoID;
+            alimento.TipoId = viewModel.tipoID;
             alimento.FoodImageMapping = new List<FoodImageMapping>();
 
             //Devolvemos todas las ID's de las imagenes que fueron seleccionadas por cada uno de los formularios, descartando los formularios en blanco.
@@ -98,59 +98,36 @@ namespace HungryWeb.Controllers
             }
 
             //de lo contrario se devuelven los valores imgresandos
-            ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "Nombre", alimento.CategoriaID);
-            ViewBag.tipoID = new SelectList(db.Tipos, "TipoID", "Nombre", alimento.tipoID);
+            ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "Nombre", alimento.CategoriaId);
+            ViewBag.tipoID = new SelectList(db.Tipos, "TipoID", "Nombre", alimento.TipoId);
             return View(alimento);
         }
 
         // GET: Food/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
-            AlimentoViewModel viewModel = new AlimentoViewModel();
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //buscamos el alimento en base a la ID
-            Alimentos alimento = db.Alimentos.Find(id);
+            var foodItem = await _service.GetDetailedFood(id.Value);
 
-            if (alimento == null)
-            {
-                return HttpNotFound();
-            }
+            foodItem.ImagenesSeleccionadas = new List<SelectList>();
+            foodItem.Categories = new SelectList(foodItem.CategoriasStock,"CategoriaId", "Nombre", foodItem.CategoriaID);
+            foodItem.Tipos = new SelectList(foodItem.TiposStock, "TipoId", "Nombre", foodItem.tipoID);
+            foodItem.ImagenesSeleccionadas.Add(new SelectList(foodItem.ImagenesStock, "Id", "NameFile", foodItem.SelectedImage));
 
-            viewModel.Categories = new SelectList(db.Categorias, "CategoriaID", "Nombre", alimento.CategoriaID);
-            viewModel.Tipos = new SelectList(db.Tipos, "TipoID", "Nombre", alimento.tipoID);
-            viewModel.ImagenesSeleccionadas = new List<SelectList>();
-
-            //El loop se encarga de devolver la imagen especifica asociada con el producto
-            foreach (var ImageMap in alimento.FoodImageMapping)
-            {
-                //agregamos una nueva seleccion dentro de la lista donde el primer paramentro es la tabla de imagenes
-                //el segundo parametro es el valor que representara internamente el tercer paramentro el que aparecera en la vista 
-                //por ulimo se selecciona un elemento el cual es la imagen original asociada al alimento.
-                viewModel.ImagenesSeleccionadas.Add(new SelectList(db.FoodImages, "ID", "NameFile", ImageMap.AlimentosImageID));
-            }
-
-            viewModel.ID = alimento.ID;
-            viewModel.Nombre = alimento.Nombre;
-            viewModel.Precio = alimento.Precio;
-            viewModel.CategoriaID = alimento.CategoriaID;
-            viewModel.tipoID = alimento.tipoID;
-
-
-            return View(viewModel);
+            return View(foodItem);
         }
 
         // POST: Food/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(AlimentoViewModel viewModel)
+        public ActionResult Edit(FoodViewModel viewModel)
         {
             //obtenemos el alimento original en base a la ID del viewModel devuelto.
-            var productToUpdate = db.Alimentos.Include(p => p.FoodImageMapping).Where(p => p.ID == viewModel.ID).Single();
+            var productToUpdate = db.Alimentos.Include(p => p.FoodImageMapping).Where(p => p.Id == viewModel.ID).Single();
 
 
             if(TryUpdateModel(productToUpdate,"", new string[] { "Nombre", "CategoriaID", "Precio", "tipoID" }))
@@ -185,7 +162,7 @@ namespace HungryWeb.Controllers
                     }
                     else
                     {
-                        if(originalImageMap.FoodImages.ID != int.Parse(ImagenesProducto[i]))
+                        if(originalImageMap.FoodImages.Id != int.Parse(ImagenesProducto[i]))
                         {
                             originalImageMap.FoodImages = currentImage;
                         }

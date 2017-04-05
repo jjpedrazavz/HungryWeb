@@ -10,14 +10,14 @@ namespace HungryWeb.Contratos
 {
     public interface IServiceFood
     {
-        void CreateItem(AlimentoViewModel orden);
+        void CreateItem(FoodViewModel orden);
 
-        void UpdateItem(int id, AlimentoViewModel orden);
+        void UpdateItem(int id, FoodViewModel orden);
 
         void DeleteItem(int id);
 
         Task<IEnumerable<Alimentos>> GetAllFood();
 
-        Task<Alimentos> GetDetailedFood(int id);
+        Task<FoodViewModel> GetDetailedFood(int id);
     }
 }

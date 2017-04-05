@@ -8,18 +8,19 @@ namespace HungryWeb.Models3
 
     public partial class FoodImages
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        
         public FoodImages()
         {
             FoodImageMapping = new HashSet<FoodImageMapping>();
         }
 
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [StringLength(120)]
+        [Index(IsUnique =true)] //lo marcamos con la anotacion para evitar nombres de archivo duplicados.
         public string NameFile { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+       
         public virtual ICollection<FoodImageMapping> FoodImageMapping { get; set; }
     }
 }

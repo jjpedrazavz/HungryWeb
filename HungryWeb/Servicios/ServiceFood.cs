@@ -13,7 +13,7 @@ namespace HungryWeb.Servicios
 {
     public class ServiceFood : IServiceFood
     {
-        public void CreateItem(AlimentoViewModel orden)
+        public void CreateItem(FoodViewModel orden)
         {
             throw new NotImplementedException();
         }
@@ -38,9 +38,9 @@ namespace HungryWeb.Servicios
                 {
                     var data = await response.Content.ReadAsStringAsync();
 
-                    var Food = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Alimentos>>(data);
+                    var FoodList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Alimentos>>(data);
 
-                    return Food;
+                    return FoodList;
                 }
 
                 return null;
@@ -48,12 +48,32 @@ namespace HungryWeb.Servicios
             }
         }
 
-        public Task<Alimentos> GetDetailedFood(int id)
+        public async Task<FoodViewModel> GetDetailedFood(int id)
         {
-            throw new NotImplementedException();
+            using (HttpClient _client = new HttpClient())
+            {
+
+                _client.BaseAddress = new Uri(string.Format(ApiConfig.GetAlimento,id));
+                _client.DefaultRequestHeaders.Accept.Clear();
+                _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await _client.GetAsync(string.Format(ApiConfig.GetAlimento, id));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+
+                    var FoodItem = Newtonsoft.Json.JsonConvert.DeserializeObject<FoodViewModel>(data);
+
+                    return FoodItem;
+                }
+
+                return null;
+
+            }
         }
 
-        public void UpdateItem(int id, AlimentoViewModel orden)
+        public void UpdateItem(int id, FoodViewModel orden)
         {
             throw new NotImplementedException();
         }

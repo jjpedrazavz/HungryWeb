@@ -21,7 +21,7 @@ namespace HungryWeb.Controllers.Tests
         {
             DetailedOrderViewModel model;
             OrdenesController ordenes = new OrdenesController();
-            var resultado = ordenes.Details(3) as ViewResult;
+            var resultado = ordenes.Details(3).Result as ViewResult;
             model = (DetailedOrderViewModel)resultado.Model;
 
 

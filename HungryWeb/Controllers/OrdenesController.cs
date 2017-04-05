@@ -8,18 +8,22 @@ using System.Web;
 using System.Web.Mvc;
 using HungryWeb.Models3;
 using HungryWeb.ViewModels;
+using HungryWeb.Contratos;
+using HungryWeb.Servicios;
+using System.Threading.Tasks;
 
 namespace HungryWeb.Controllers
 {
     public class OrdenesController : Controller
     {
         private StoreContext db = new StoreContext();
+        private readonly IServiceOrders _service = new ServiceOrders();
 
         // GET: Ordenes
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var ordenes = db.Ordenes.Include(o => o.Comensales).Include(o => o.Estado);
-            return View(ordenes.ToList());
+           var orders = await _service.GetAllSlimOrders();
+           return View(orders);
         }
 
         // GET: Ordenes/Details/5

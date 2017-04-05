@@ -7,26 +7,8 @@ using System.Web;
 
 namespace HungryWeb.Servicios
 {
-    public class ServiceInventory : IService<Alimentos>
+    public class ServiceInventory
     {
-        public void CreateItem(Alimentos alimento)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteItem(Alimentos alimento)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Alimentos> GetAllItems()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateItem(Alimentos alimento)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HungryWeb.Models3.Ordenes>
+﻿@model IEnumerable<HungryWeb.ViewModels.SlimOrdersViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -9,10 +9,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Comensales.Nombre)
+            @Html.DisplayNameFor(model => model.OrdenID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estado.Descripcion)
+            @Html.DisplayNameFor(model => model.ComensalID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoDescripcion)
         </th>
         <th></th>
     </tr>
@@ -20,10 +23,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Comensales.Nombre)
+            @Html.DisplayFor(modelItem => item.OrdenID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Estado.Descripcion)
+            @Html.DisplayFor(modelItem => item.ComensalID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadoDescripcion)
         </td>
         <td>
             @Html.ActionLink("Details", "Details", new { id=item.OrdenID }) |

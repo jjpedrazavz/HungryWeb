@@ -1,5 +1,6 @@
 namespace HungryWeb.Models3
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -33,18 +34,25 @@ namespace HungryWeb.Models3
         public int tipoID { get; set; }
 
         public virtual Categorias Categorias { get; set; }
+
         public virtual ICollection<FoodImageMapping> FoodImageMapping { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Menu> Menu { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Menu> Menu1 { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Menu> Menu2 { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Menu> Menu3 { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Menu> Menu4 { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Menu> Menu5 { get; set; }
 
         public virtual Tipos Tipos { get; set; }

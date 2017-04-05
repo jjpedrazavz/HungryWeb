@@ -21,7 +21,7 @@ namespace HungryWeb.Contratos
 
         Task<IEnumerable<SlimOrdersViewModel>> GetAllSlimOrders();
 
-        DetailedOrderViewModel GetDetailedOrder(int id);
+        Task<DetailedOrderViewModel> GetDetailedOrder(int id);
 
     }
 }

@@ -7,6 +7,7 @@ using System.Web;
 using HungryWeb.ViewModels;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 namespace HungryWeb.Servicios
 {
@@ -28,7 +29,7 @@ namespace HungryWeb.Servicios
             {
                 _client.BaseAddress = new Uri(ApiConfig.GetSlimOrders);
                 _client.DefaultRequestHeaders.Accept.Clear();
-                _client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 HttpResponseMessage response = await _client.GetAsync(ApiConfig.GetSlimOrders);
 
@@ -52,9 +53,30 @@ namespace HungryWeb.Servicios
             throw new NotImplementedException();
         }
 
-        public DetailedOrderViewModel GetDetailedOrder(int id)
+        public async Task<DetailedOrderViewModel> GetDetailedOrder(int id)
         {
-            throw new NotImplementedException();
+            using (HttpClient _client = new HttpClient())
+            {
+
+                _client.BaseAddress = new Uri(string.Format(ApiConfig.GetDetailedOrder, id));
+                _client.DefaultRequestHeaders.Accept.Clear();
+                _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await _client.GetAsync(string.Format(ApiConfig.GetDetailedOrder, id));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+
+                    var Order = Newtonsoft.Json.JsonConvert.DeserializeObject<DetailedOrderViewModel>(data);
+
+                    return Order;
+                }
+
+                return null;
+
+
+            }
         }
     }
 }

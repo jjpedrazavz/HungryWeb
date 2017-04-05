@@ -27,78 +27,19 @@ namespace HungryWeb.Controllers
         }
 
         // GET: Ordenes/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Ordenes orden = db.Ordenes.Find(id);
+            DetailedOrderViewModel details = await _service.GetDetailedOrder(id.Value);
 
-            if (orden == null)
+            if (details == null)
             {
                 return HttpNotFound();
             }
-
-            DetailedOrderViewModel details = new DetailedOrderViewModel();
-
-            details.OrdenID = orden.OrdenID;
-
-            details.estado = db.Estado.Find(orden.EstadoID);
-            details.comensal = db.Comensales.Find(orden.ComensalID);
-
-            var MenuActual = orden.Menu.FirstOrDefault();
-
-
-            if (MenuActual != null)
-            {
-
-                if (MenuActual.bebidaID != null)
-                {
-                    details.bebida = db.Alimentos.Find(MenuActual.bebidaID);
-                    details.totalMenu += (double)details.bebida.Precio;
-                }
-
-
-                if (MenuActual.sopaID != null)
-                {
-                    details.sopa = db.Alimentos.Find(MenuActual.sopaID);
-                    details.totalMenu += (double)details.sopa.Precio;
-                }
-
-
-                if (MenuActual.platoFuerteID != null)
-                {
-                    details.platoFuerte = db.Alimentos.Find(MenuActual.platoFuerteID);
-                    details.totalMenu += (double)details.platoFuerte.Precio;
-                }
-
-                if (MenuActual.postreID != null)
-                {
-                    details.postre = db.Alimentos.Find(MenuActual.postreID);
-                    details.totalMenu += (double)details.postre.Precio;
-                }
-
-                if (MenuActual.bocadilloID != null)
-                {
-                    details.bocadillo = db.Alimentos.Find(MenuActual.bocadilloID);
-                    details.totalMenu += (double)details.bocadillo.Precio;
-                }
-
-
-            if (MenuActual.complementoID != null)
-                {
-                    details.complemento = db.Alimentos.Find(MenuActual.complementoID);
-                    details.totalMenu += (double)details.complemento.Precio;
-                }
-
-            }
-            else
-            {
-                return HttpNotFound();
-            }
-
 
             return View(details);
         }
@@ -112,38 +53,38 @@ namespace HungryWeb.Controllers
             viewModel.MenusSeleccionar = new List<SelectList>();
 
             var sopas = (from element in db.Alimentos
-                            where element.tipoID == 1
-                            select element).ToList();
-
-                viewModel.MenusSeleccionar.Add(new SelectList(sopas, "ID", "Nombre", ""));
-
-            var platosfuertes = (from element in db.Alimentos
-                         where element.tipoID == 3
+                         where element.tipoID == 1
                          select element).ToList();
 
-            viewModel.MenusSeleccionar.Add(new SelectList(platosfuertes, "ID", "Nombre",""));
+            viewModel.MenusSeleccionar.Add(new SelectList(sopas, "ID", "Nombre", ""));
+
+            var platosfuertes = (from element in db.Alimentos
+                                 where element.tipoID == 3
+                                 select element).ToList();
+
+            viewModel.MenusSeleccionar.Add(new SelectList(platosfuertes, "ID", "Nombre", ""));
 
 
 
             var bebidas = (from element in db.Alimentos
-                                 where element.tipoID == 2
-                                 select element).ToList();
+                           where element.tipoID == 2
+                           select element).ToList();
 
             viewModel.MenusSeleccionar.Add(new SelectList(bebidas, "ID", "Nombre", ""));
 
 
 
             var postres = (from element in db.Alimentos
-                                 where element.tipoID == 4
-                                 select element).ToList();
+                           where element.tipoID == 4
+                           select element).ToList();
 
             viewModel.MenusSeleccionar.Add(new SelectList(postres, "ID", "Nombre", ""));
 
 
 
             var complementos = (from element in db.Alimentos
-                           where element.tipoID == 5
-                           select element).ToList();
+                                where element.tipoID == 5
+                                select element).ToList();
 
             viewModel.MenusSeleccionar.Add(new SelectList(complementos, "ID", "Nombre", ""));
 

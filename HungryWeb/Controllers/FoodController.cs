@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using HungryWeb.Models3;
 using HungryWeb.ViewModels;
+using HungryWeb.Contratos;
+using HungryWeb.Servicios;
+using System.Threading.Tasks;
 
 namespace HungryWeb.Controllers
 {
@@ -15,26 +18,30 @@ namespace HungryWeb.Controllers
     {
         private StoreContext db = new StoreContext();
 
+        private IServiceFood _service = new ServiceFood();
+
         // GET: Food
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var alimentos = db.Alimentos.Include(a => a.Categorias).Include(a => a.Tipos);
-            return View(alimentos.ToList());
+            var elements = await _service.GetAllFood();
+            return View(elements);
         }
 
         // GET: Food/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alimentos alimentos = db.Alimentos.Find(id);
-            if (alimentos == null)
+
+            Alimentos alimento = await _service.GetDetailedFood(id.Value);
+
+            if (alimento == null)
             {
                 return HttpNotFound();
             }
-            return View(alimentos);
+            return View(alimento);
         }
 
         // GET: Food/Create

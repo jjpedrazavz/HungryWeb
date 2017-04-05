@@ -4,27 +4,55 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using HungryWeb.ViewModels;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace HungryWeb.Servicios
 {
-    public class ServiceOrders : IService<Ordenes>
+    public class ServiceOrders : IServiceOrders
     {
-        public void CreateItem(Ordenes alimento)
+        public void CreateItem(OrdenesViewModel orden)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteItem(Ordenes alimento)
+        public void DeleteItem(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Ordenes> GetAllItems()
+        public async Task<IEnumerable<SlimOrdersViewModel>> GetAllSlimOrders()
+        {
+            using (HttpClient _client = new HttpClient())
+            {
+                _client.BaseAddress = new Uri(ApiConfig.GetSlimOrders);
+                _client.DefaultRequestHeaders.Accept.Clear();
+                _client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await _client.GetAsync(ApiConfig.GetSlimOrders);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+                    var Lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<SlimOrdersViewModel>>(data);
+
+                    return Lista;
+
+                }
+
+                return null;
+
+            }
+        }
+
+
+        public void UpdateItem(int id, OrdenesViewModel orden)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateItem(Ordenes alimento)
+        public DetailedOrderViewModel GetDetailedOrder(int id)
         {
             throw new NotImplementedException();
         }

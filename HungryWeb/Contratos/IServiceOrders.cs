@@ -13,15 +13,17 @@ namespace HungryWeb.Contratos
 {
     interface IServiceOrders
     {
-        void CreateItem(OrdenesViewModel orden);
+        Task<bool> CreateItem(OrderViewModel orden);
 
-        void UpdateItem(int id, OrdenesViewModel orden);
+        Task<bool> UpdateItem(int id, OrderViewModel orden);
 
-        void DeleteItem(int id);
+        Task<bool> DeleteItem(int id);
 
         Task<IEnumerable<SlimOrdersViewModel>> GetAllSlimOrders();
 
         Task<DetailedOrderViewModel> GetDetailedOrder(int id);
+
+        Task<OrderViewModel> GetCreateOrderForm();
 
     }
 }

@@ -1,4 +1,4 @@
-﻿@model HungryWeb.Models3.Ordenes
+﻿@model HungryWeb.ViewModels.DetailedOrderViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -8,27 +8,9 @@
 
 <h3>Esta seguro de eliminar esta Orden?</h3>
 <div>
-    <h4>Ordenes</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Comensales.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Comensales.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estado.Descripcion)
-        </dd>
-
-    </dl>
-
+  @Html.Partial("_DetailedAndDeleteView",Model)
+    <hr />
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 

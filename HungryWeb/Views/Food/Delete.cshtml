@@ -1,4 +1,4 @@
-﻿@model HungryWeb.Models3.Alimentos
+﻿@model HungryWeb.ViewModels.FoodViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -27,19 +27,19 @@
             @Html.DisplayFor(model => model.Precio)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Categorias.Nombre)
+            @Html.DisplayNameFor(model => model.CategoriaID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Categorias.Nombre)
+            @Html.DisplayFor(model => model.CategoriaID)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Tipos.Nombre)
+            @Html.DisplayNameFor(model => model.tipoID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Tipos.Nombre)
+            @Html.DisplayFor(model => model.tipoID)
         </dd>
     </dl>
 

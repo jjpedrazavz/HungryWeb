@@ -52,9 +52,18 @@ namespace HungryWeb.Servicios
             }
         }
 
-        public void DeleteItem(int id)
+        public async Task<bool> DeleteItem(int id)
         {
-            throw new NotImplementedException();
+            using (HttpClient client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri(string.Format(ApiConfig.DeleteAlimento, id));
+                HttpResponseMessage response = await client.DeleteAsync(string.Format(ApiConfig.DeleteAlimento, id));
+
+                return response.StatusCode == System.Net.HttpStatusCode.OK ? true : false;
+
+
+            }
         }
 
         public async Task<IEnumerable<Alimentos>> GetAllFood()
@@ -107,9 +116,20 @@ namespace HungryWeb.Servicios
             }
         }
 
-        public void UpdateItem(int id, FoodViewModel orden)
+        public async Task<bool> UpdateItem(FoodViewModel viewModel)
         {
-            throw new NotImplementedException();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiConfig.UpdateFood);
+
+                StringContent content = new StringContent(JsonConvert.SerializeObject(viewModel).ToString(), Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PutAsync(ApiConfig.UpdateFood, content);
+
+                return response.StatusCode == System.Net.HttpStatusCode.NotModified ? false : true;
+
+
+            }
         }
     }
 }

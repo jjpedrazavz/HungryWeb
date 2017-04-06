@@ -123,6 +123,9 @@
   <data name="CreateAlimento" xml:space="preserve">
     <value>http://192.168.15.5:5000/api/Alimentos/CrearAlimento</value>
   </data>
+  <data name="DeleteAlimento" xml:space="preserve">
+    <value>http://192.168.15.5:5000/api/Alimentos/DeleteAlimentos/{0}</value>
+  </data>
   <data name="GetAlimento" xml:space="preserve">
     <value>http://192.168.15.5:5000/api/Alimentos/{0}</value>
   </data>
@@ -134,5 +137,8 @@
   </data>
   <data name="GetSlimOrders" xml:space="preserve">
     <value>http://192.168.15.5:5000/api/Ordenes/</value>
+  </data>
+  <data name="UpdateFood" xml:space="preserve">
+    <value>http://192.168.15.5:5000/api/Alimentos/UpdateAlimentos</value>
   </data>
 </root>

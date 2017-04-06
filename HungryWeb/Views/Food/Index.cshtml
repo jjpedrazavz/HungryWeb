@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HungryWeb.Models3.Alimentos>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Alimentos";
 }
 
 <h2>Alimentos</h2>
@@ -42,7 +42,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

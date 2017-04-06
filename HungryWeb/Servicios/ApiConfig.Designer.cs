@@ -88,6 +88,15 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Ordenes/DeleteOrdenes/{0}.
+        /// </summary>
+        internal static string DeleteOrder {
+            get {
+                return ResourceManager.GetString("DeleteOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/{0}.
         /// </summary>
         internal static string GetAlimento {
@@ -102,6 +111,15 @@ namespace HungryWeb.Servicios {
         internal static string GetAllFood {
             get {
                 return ResourceManager.GetString("GetAllFood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Ordenes/PostOrdenes.
+        /// </summary>
+        internal static string GetCreateOrdersForm {
+            get {
+                return ResourceManager.GetString("GetCreateOrdersForm", resourceCulture);
             }
         }
         

@@ -1,4 +1,4 @@
-﻿@model HungryWeb.ViewModels.OrdenesViewModel
+﻿@model HungryWeb.ViewModels.OrderViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -118,6 +118,26 @@
                                 <div class="col-md-10">
                                     @Html.DropDownListFor(m => m.complementoID, Model.MenusSeleccionar[4], "Seleccione un complemento", htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.complementoID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#BocadilloSection" id="BocadilloButton">
+                       Bocadillos
+                    </button>
+                    <div class="collapse" id="BocadilloSection">
+                        <div class="well">
+                            <br />
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.bocadilloID, Model.MenusSeleccionar[5], "Seleccione un complemento", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.bocadilloID, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>

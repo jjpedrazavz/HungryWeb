@@ -16,7 +16,6 @@ namespace HungryWeb.Controllers
 {
     public class OrdenesController : Controller
     {
-        private StoreContext db = new StoreContext();
         private readonly IServiceOrders _service = new ServiceOrders();
 
         // GET: Ordenes
@@ -45,20 +44,21 @@ namespace HungryWeb.Controllers
         }
 
         // GET: Ordenes/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            OrdenesViewModel viewModel = new OrdenesViewModel();
+            OrderViewModel viewModel = await _service.GetCreateOrderForm();
 
-            viewModel.Estados = new SelectList(db.Estado, "EstadoID", "Descripcion", "");
+
+            viewModel.Estados = new SelectList(viewModel.EstadosList, "EstadoID", "Descripcion", "");
             viewModel.MenusSeleccionar = new List<SelectList>();
 
-            var sopas = (from element in db.Alimentos
+            var sopas = (from element in viewModel.AlimentosList
                          where element.TipoId == 1
                          select element).ToList();
 
             viewModel.MenusSeleccionar.Add(new SelectList(sopas, "ID", "Nombre", ""));
 
-            var platosfuertes = (from element in db.Alimentos
+            var platosfuertes = (from element in viewModel.AlimentosList
                                  where element.TipoId == 3
                                  select element).ToList();
 
@@ -66,7 +66,7 @@ namespace HungryWeb.Controllers
 
 
 
-            var bebidas = (from element in db.Alimentos
+            var bebidas = (from element in viewModel.AlimentosList
                            where element.TipoId == 2
                            select element).ToList();
 
@@ -74,7 +74,7 @@ namespace HungryWeb.Controllers
 
 
 
-            var postres = (from element in db.Alimentos
+            var postres = (from element in viewModel.AlimentosList
                            where element.TipoId == 4
                            select element).ToList();
 
@@ -82,11 +82,18 @@ namespace HungryWeb.Controllers
 
 
 
-            var complementos = (from element in db.Alimentos
+            var complementos = (from element in viewModel.AlimentosList
                                 where element.TipoId == 5
                                 select element).ToList();
 
             viewModel.MenusSeleccionar.Add(new SelectList(complementos, "ID", "Nombre", ""));
+
+
+            var bocadillos = (from element in viewModel.AlimentosList
+                                where element.TipoId == 6
+                                select element).ToList();
+
+            viewModel.MenusSeleccionar.Add(new SelectList(bocadillos, "ID", "Nombre", ""));
 
 
             return View(viewModel);
@@ -95,98 +102,34 @@ namespace HungryWeb.Controllers
         // POST: Ordenes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(OrdenesViewModel viewModel)
+        public async Task<ActionResult> Create(OrderViewModel viewModel)
         {
-            Ordenes orden = new Ordenes();
 
-            //buscamos si existe el comensal.
-            var comensal = db.Comensales.Find(int.Parse(viewModel.ComensalID));
-
-
-            if (comensal != null)
-            {
-                orden.ComensalID = int.Parse(viewModel.ComensalID);
-            }
-            else
-            {
-                return HttpNotFound();
-            }
-
-            orden.EstadoID = int.Parse(viewModel.EstadoID);
-            orden.Menu = new List<Menu>();
-
-            Menu menu = new Menu();
-            menu.OrdenID = orden.OrdenID;
-
-
-            if (!string.IsNullOrWhiteSpace(viewModel.bebidaID))
-                menu.bebidaID = int.Parse(viewModel.bebidaID);
-
-            if (!string.IsNullOrWhiteSpace(viewModel.sopaID))
-                menu.sopaID = int.Parse(viewModel.sopaID);
-
-            if (!string.IsNullOrWhiteSpace(viewModel.platoFuerteID))
-                menu.platoFuerteID = int.Parse(viewModel.platoFuerteID);
-
-            if (!string.IsNullOrWhiteSpace(viewModel.postreID))
-                menu.postreID = int.Parse(viewModel.postreID);
-
-            if (!string.IsNullOrWhiteSpace(viewModel.complementoID))
-                menu.complementoID = int.Parse(viewModel.complementoID);
-
-            if (!string.IsNullOrWhiteSpace(viewModel.bocadilloID))
-                menu.bocadilloID = int.Parse(viewModel.bocadilloID);
-
-
-            orden.Menu.Add(menu);
-
-
-            if (ModelState.IsValid)
-            {
-                db.Ordenes.Add(orden);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-             
-            viewModel.Estados = new SelectList(db.Estado, "EstadoID", "Descripcion", orden.EstadoID);
-            return View(orden);
+            return await _service.CreateItem(viewModel) ? RedirectToAction("Index") : RedirectToAction("Create");
+  
         }
 
-
         // GET: Ordenes/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ordenes ordenes = db.Ordenes.Find(id);
 
-            if (ordenes == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ordenes);
+            return View( await _service.GetDetailedOrder(id.Value));
+
+          
         }
 
         // POST: Ordenes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Ordenes ordenes = db.Ordenes.Find(id);
-            db.Ordenes.Remove(ordenes);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+           return await _service.DeleteItem(id) ? RedirectToAction("Index") : RedirectToAction("Delete");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
     }
 }

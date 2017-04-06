@@ -8,19 +8,46 @@ using HungryWeb.ViewModels;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Text;
+using System.Net;
 
 namespace HungryWeb.Servicios
 {
     public class ServiceOrders : IServiceOrders
     {
-        public void CreateItem(OrdenesViewModel orden)
+        public async Task<bool> CreateItem(OrderViewModel orden)
         {
-            throw new NotImplementedException();
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiConfig.GetCreateOrdersForm);
+
+                StringContent content = new StringContent(JsonConvert.SerializeObject(orden).ToString(), Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(ApiConfig.GetCreateOrdersForm, content);
+
+                return  response.StatusCode == HttpStatusCode.Created ? true : false;
+
+
+            }
+
+
+
         }
 
-        public void DeleteItem(int id)
+        public async Task<bool> DeleteItem(int id)
         {
-            throw new NotImplementedException();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(string.Format(ApiConfig.DeleteOrder, id));
+
+                HttpResponseMessage response = await client.DeleteAsync(string.Format(ApiConfig.DeleteOrder, id));
+
+                return response.StatusCode == HttpStatusCode.NoContent ? true : false;
+
+
+            }
         }
 
         public async Task<IEnumerable<SlimOrdersViewModel>> GetAllSlimOrders()
@@ -48,7 +75,7 @@ namespace HungryWeb.Servicios
         }
 
 
-        public void UpdateItem(int id, OrdenesViewModel orden)
+        public async Task<bool> UpdateItem(int id, OrderViewModel orden)
         {
             throw new NotImplementedException();
         }
@@ -71,6 +98,31 @@ namespace HungryWeb.Servicios
                     var Order = Newtonsoft.Json.JsonConvert.DeserializeObject<DetailedOrderViewModel>(data);
 
                     return Order;
+                }
+
+                return null;
+
+
+            }
+        }
+
+        public async Task<OrderViewModel> GetCreateOrderForm()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiConfig.GetCreateOrdersForm);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync(ApiConfig.GetCreateOrdersForm);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+                    var element = Newtonsoft.Json.JsonConvert.DeserializeObject<OrderViewModel>(data);
+
+                    return element;
+
                 }
 
                 return null;

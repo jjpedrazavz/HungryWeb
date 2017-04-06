@@ -1,0 +1,135 @@
+﻿@model HungryWeb.ViewModels.DetailedOrderViewModel
+
+<div>
+    <h4>Orden</h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrdenID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comensal.ComensalID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado.Descripcion)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.OrdenID)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.comensal.ComensalID)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.estado.Descripcion)
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="jumbotron">
+
+    <h3>Descripcion de la orden</h3>
+
+    <table class="table">
+
+        <tr>
+            <th>
+                @Html.DisplayName("Platillo")
+            </th>
+            <th>
+                @Html.DisplayName("Precio")
+            </th>
+        </tr>
+
+        <tr>
+            @if (Model.sopa != null)
+            {
+                <td>
+                    @Html.DisplayFor(model => model.sopa.Nombre)
+                </td>
+                    <td>
+                        @Html.DisplayFor(model => model.sopa.Precio)
+                    </td>
+
+            }
+
+        </tr>
+
+        <tr>
+            @if (Model.platoFuerte != null)
+            {
+                <td>
+                    @Html.DisplayFor(model => model.platoFuerte.Nombre)
+                </td>
+                    <td>
+                        @Html.DisplayFor(model => model.platoFuerte.Precio)
+                    </td>
+            }
+        </tr>
+
+        <tr>
+            @if (Model.bebida != null)
+            {
+                <td>
+                    @Html.DisplayFor(model => model.bebida.Nombre)
+                </td>
+                    <td>
+                        @Html.DisplayFor(model => model.bebida.Precio)
+                    </td>
+            }
+        </tr>
+
+        <tr>
+            @if (Model.postre != null)
+            {
+                <td>
+                    @Html.DisplayFor(model => model.postre.Nombre)
+                </td>
+                    <td>
+                        @Html.DisplayFor(model => model.postre.Precio)
+                    </td>
+            }
+        </tr>
+
+        <tr>
+            @if (Model.complemento != null)
+            {
+                <td>
+                    @Html.DisplayFor(model => model.complemento.Nombre)
+                </td>
+                    <td>
+                        @Html.DisplayFor(model => model.complemento.Precio)
+                    </td>
+            }
+        </tr>
+
+        <tr>
+            @if (Model.bocadillo != null)
+            {
+                <td>
+                    @Html.DisplayFor(model => model.bocadillo.Nombre)
+                </td>
+                    <td>
+                        @Html.DisplayFor(model => model.bocadillo.Precio)
+                    </td>
+            }
+        </tr>
+
+
+        <tr>
+            <td>
+                <strong>  Total: </strong>
+            </td>
+            <td>
+                <strong> @Model.totalMenu </strong>
+            </td>
+        </tr>
+
+    </table>
+
+
+
+</div>
+

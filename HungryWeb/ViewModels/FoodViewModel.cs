@@ -1,4 +1,5 @@
 ﻿using HungryWeb.Models3;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,17 +22,24 @@ namespace HungryWeb.ViewModels
 
         public int SelectedImage { get; set; }
 
+
         public SelectList Categories { get; set; }
+
 
         public SelectList Tipos { get; set; }
 
+
         public List<SelectList> ImagenesSeleccionadas { get; set; }
+
 
         public IEnumerable<FoodImages> ImagenesStock { get; set; }
 
+
         public IEnumerable<Categorias> CategoriasStock { get; set; }
 
+
         public IEnumerable<Tipos> TiposStock { get; set; }
+
 
         public string[] ImagenesProducto { get; set; }
 

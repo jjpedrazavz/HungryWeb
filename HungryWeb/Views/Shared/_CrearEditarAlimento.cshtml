@@ -46,8 +46,8 @@
               El segundo paramentro es el SelectList en el indice indicado 
               El tercer paramentro es la leyenda que aparece en el view
               El cuarto los estilos css a aplicar.*@
-            @Html.DropDownListFor(vm => vm.ImagenesProducto, Model.ImagenesSeleccionadas[i], "Seleccionar Imagen", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.ImagenesSeleccionadas, "", new { @class = "textdanger" })
+            @Html.DropDownListFor(vm => vm.SelectedImage, Model.ImagenesSeleccionadas[i], "Seleccionar Imagen", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SelectedImage, "", new { @class = "textdanger" })
         </div>
     </div>
 

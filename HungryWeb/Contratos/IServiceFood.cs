@@ -10,7 +10,7 @@ namespace HungryWeb.Contratos
 {
     public interface IServiceFood
     {
-        void CreateItem(FoodViewModel orden);
+        Task<bool> CreateItem(FoodViewModel orden);
 
         void UpdateItem(int id, FoodViewModel orden);
 
@@ -19,5 +19,8 @@ namespace HungryWeb.Contratos
         Task<IEnumerable<Alimentos>> GetAllFood();
 
         Task<FoodViewModel> GetDetailedFood(int id);
+
+        Task<FoodViewModel> CreateItemGet();
+
     }
 }

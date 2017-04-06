@@ -45,21 +45,18 @@ namespace HungryWeb.Controllers
         }
 
         // GET: Food/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            FoodViewModel viewModel = new FoodViewModel();
-            viewModel.Categories = new SelectList(db.Categorias, "CategoriaID", "Nombre");
-            viewModel.Tipos = new SelectList(db.Tipos, "TipoID", "Nombre");
-            viewModel.ImagenesSeleccionadas = new List<SelectList>();
+            var viewModel = await _service.CreateItemGet();
 
-            //devolvemos todas las imagenes en la bd
-            for (int i = 0; i < Constantes.NumeroImagenes; i++)
+            if(viewModel != null)
             {
-                //agregamos todas las imagenes tantas veces como formularios para agregar una imagen tengamos, en este caso es 1 solo formulario
-                viewModel.ImagenesSeleccionadas.Add(new SelectList(db.FoodImages, "ID", "NameFile"));
 
+                viewModel.ImagenesSeleccionadas = new List<SelectList>();
+                viewModel.Categories = new SelectList(viewModel.CategoriasStock, "CategoriaId", "Nombre");
+                viewModel.Tipos = new SelectList(viewModel.TiposStock, "TipoId", "Nombre");
+                viewModel.ImagenesSeleccionadas.Add(new SelectList(viewModel.ImagenesStock, "Id", "NameFile"));
             }
-
 
             return View(viewModel);
         }
@@ -67,8 +64,11 @@ namespace HungryWeb.Controllers
         // POST: Food/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(FoodViewModel viewModel)
+        public async Task<ActionResult> Create(FoodViewModel viewModel)
         {
+
+            #region codigo anterior
+            /*
             Alimentos alimento = new Alimentos();
 
             alimento.CategoriaId = viewModel.CategoriaID;
@@ -101,6 +101,12 @@ namespace HungryWeb.Controllers
             ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "Nombre", alimento.CategoriaId);
             ViewBag.tipoID = new SelectList(db.Tipos, "TipoID", "Nombre", alimento.TipoId);
             return View(alimento);
+            */
+
+            #endregion
+
+            return await _service.CreateItem(viewModel) ? RedirectToAction("Index") :  RedirectToAction("Create",viewModel);
+
         }
 
         // GET: Food/Edit/5

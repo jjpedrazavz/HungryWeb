@@ -8,14 +8,48 @@ using HungryWeb.ViewModels;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace HungryWeb.Servicios
 {
     public class ServiceFood : IServiceFood
     {
-        public void CreateItem(FoodViewModel orden)
+        public async Task<bool> CreateItem(FoodViewModel orden)
         {
-            throw new NotImplementedException();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiConfig.CrearAlimentoConfirm);
+                StringContent content = new StringContent(JsonConvert.SerializeObject(orden).ToString(), Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(ApiConfig.CrearAlimentoConfirm, content);
+                return response.StatusCode == System.Net.HttpStatusCode.Created ? true : false;
+
+            }
+        }
+
+        public async Task<FoodViewModel> CreateItemGet()
+        {
+            using (HttpClient _client = new HttpClient())
+            {
+
+                _client.BaseAddress = new Uri(ApiConfig.CreateAlimento);
+                _client.DefaultRequestHeaders.Accept.Clear();
+                _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await _client.GetAsync(ApiConfig.CreateAlimento);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+
+                    var elemento = Newtonsoft.Json.JsonConvert.DeserializeObject<FoodViewModel>(data);
+
+                    return elemento;
+                }
+
+                return null;
+
+            }
         }
 
         public void DeleteItem(int id)

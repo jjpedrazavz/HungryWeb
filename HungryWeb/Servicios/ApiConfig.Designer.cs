@@ -61,6 +61,24 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/CrearAlimentoConfirm.
+        /// </summary>
+        internal static string CrearAlimentoConfirm {
+            get {
+                return ResourceManager.GetString("CrearAlimentoConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/CrearAlimento.
+        /// </summary>
+        internal static string CreateAlimento {
+            get {
+                return ResourceManager.GetString("CreateAlimento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/{0}.
         /// </summary>
         internal static string GetAlimento {

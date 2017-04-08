@@ -75,13 +75,14 @@ namespace HungryWeb.Servicios
         }
 
 
-        public async Task<bool> UpdateItem(DetailedOrderViewModel orden)
+        public async Task<bool> UpdateItem(DetailedOrderViewModel viewModel)
         {
+
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ApiConfig.UpdateOrder);
 
-                StringContent content = new StringContent(JsonConvert.SerializeObject(orden).ToString(), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(viewModel).ToString(), Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await client.PutAsync(ApiConfig.UpdateOrder, content);
 

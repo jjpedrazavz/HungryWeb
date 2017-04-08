@@ -337,7 +337,6 @@
     <Content Include="Views\Shared\_CrearEditarAlimento.cshtml" />
     <Content Include="Views\Account\PanelLogin.cshtml" />
     <Content Include="Views\Ordenes\Delete.cshtml" />
-    <Content Include="Views\Ordenes\Details.cshtml" />
     <Content Include="Views\Ordenes\Index.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\FoodImages\Create.cshtml" />
@@ -346,6 +345,7 @@
     <Content Include="Views\FoodImages\Edit.cshtml" />
     <Content Include="Views\FoodImages\Index.cshtml" />
     <Content Include="Views\Shared\_DetailedAndDeleteView.cshtml" />
+    <Content Include="Views\Ordenes\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

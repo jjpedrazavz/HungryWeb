@@ -52,8 +52,6 @@ namespace HungryWeb.Controllers
             {
 
                 viewModel.ImagenesSeleccionadas = new List<SelectList>();
-                viewModel.Categories = new SelectList(viewModel.CategoriasStock, "CategoriaId", "Nombre");
-                viewModel.Tipos = new SelectList(viewModel.TiposStock, "TipoId", "Nombre");
                 viewModel.ImagenesSeleccionadas.Add(new SelectList(viewModel.ImagenesStock, "Id", "NameFile"));
             }
 
@@ -80,8 +78,6 @@ namespace HungryWeb.Controllers
 
             var foodItem = await _service.GetDetailedFood(id.Value);
             foodItem.ImagenesSeleccionadas = new List<SelectList>();
-            foodItem.Categories = new SelectList(foodItem.CategoriasStock,"CategoriaId", "Nombre", foodItem.CategoriaID);
-            foodItem.Tipos = new SelectList(foodItem.TiposStock, "TipoId", "Nombre", foodItem.tipoID);
             foodItem.ImagenesSeleccionadas.Add(new SelectList(foodItem.ImagenesStock, "Id", "NameFile", foodItem.SelectedImage));
 
             return View(foodItem);

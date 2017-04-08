@@ -25,8 +25,8 @@ namespace HungryWeb.Controllers
            return View(orders);
         }
 
-        // GET: Ordenes/Details/5
-        public async Task<ActionResult> Details(int? id)
+        // GET: Ordenes/edit/5
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -97,6 +97,15 @@ namespace HungryWeb.Controllers
 
 
             return View(viewModel);
+        }
+
+        [HttpPost,]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(DetailedOrderViewModel viewModel)
+        {
+
+            return await _service.UpdateItem(viewModel) ? RedirectToAction("Index") : RedirectToAction("Edit", viewModel.OrdenID);
+
         }
 
         // POST: Ordenes/Create

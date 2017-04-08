@@ -13,6 +13,10 @@ namespace HungryWeb.ViewModels
        [Display(Name ="Numero de Orden")]
         public int OrdenID { get; set; }
 
+        public int ComensalID { get; set; }
+
+        public int EstadoID { get; set; }
+
         public Estado estado { get; set; }
 
         public Alimentos sopa { get; set; }
@@ -32,6 +36,8 @@ namespace HungryWeb.ViewModels
         [DataType(DataType.Currency)]
         [DisplayFormat(DataFormatString ="{0:c}")]
         public double totalMenu { get; set; }
+
+        public IEnumerable<Estado> estadosList { get; set; }
 
     }
 }

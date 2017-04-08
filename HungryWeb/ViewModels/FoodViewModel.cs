@@ -23,12 +23,6 @@ namespace HungryWeb.ViewModels
         public int SelectedImage { get; set; }
 
 
-        public SelectList Categories { get; set; }
-
-
-        public SelectList Tipos { get; set; }
-
-
         public List<SelectList> ImagenesSeleccionadas { get; set; }
 
 

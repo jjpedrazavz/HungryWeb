@@ -61,7 +61,7 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/CrearAlimentoConfirm.
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Alimentos/CrearAlimentoConfirm.
         /// </summary>
         internal static string CrearAlimentoConfirm {
             get {
@@ -70,7 +70,7 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/CrearAlimento.
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Alimentos/CrearAlimento.
         /// </summary>
         internal static string CreateAlimento {
             get {
@@ -79,7 +79,7 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/DeleteAlimentos/{0}.
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Alimentos/DeleteAlimentos/{0}.
         /// </summary>
         internal static string DeleteAlimento {
             get {
@@ -88,7 +88,7 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Ordenes/DeleteOrdenes/{0}.
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Ordenes/DeleteOrdenes/{0}.
         /// </summary>
         internal static string DeleteOrder {
             get {
@@ -97,7 +97,7 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/{0}.
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Alimentos/{0}.
         /// </summary>
         internal static string GetAlimento {
             get {
@@ -106,7 +106,7 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/.
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Alimentos/.
         /// </summary>
         internal static string GetAllFood {
             get {
@@ -115,7 +115,7 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Ordenes/PostOrdenes.
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Ordenes/PostOrdenes.
         /// </summary>
         internal static string GetCreateOrdersForm {
             get {
@@ -124,7 +124,7 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Ordenes/{0}.
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Ordenes/{0}.
         /// </summary>
         internal static string GetDetailedOrder {
             get {
@@ -133,7 +133,7 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Ordenes/.
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Ordenes/.
         /// </summary>
         internal static string GetSlimOrders {
             get {
@@ -142,11 +142,20 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://192.168.15.5:5000/api/Alimentos/UpdateAlimentos.
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Alimentos/UpdateAlimentos.
         /// </summary>
         internal static string UpdateFood {
             get {
                 return ResourceManager.GetString("UpdateFood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Ordenes/OrdenEdit.
+        /// </summary>
+        internal static string UpdateOrder {
+            get {
+                return ResourceManager.GetString("UpdateOrder", resourceCulture);
             }
         }
     }

@@ -75,9 +75,19 @@ namespace HungryWeb.Servicios
         }
 
 
-        public async Task<bool> UpdateItem(int id, OrderViewModel orden)
+        public async Task<bool> UpdateItem(DetailedOrderViewModel orden)
         {
-            throw new NotImplementedException();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiConfig.UpdateOrder);
+
+                StringContent content = new StringContent(JsonConvert.SerializeObject(orden).ToString(), Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PutAsync(ApiConfig.UpdateOrder, content);
+
+               return  response.StatusCode == HttpStatusCode.NoContent ? true : false;
+
+            }
         }
 
         public async Task<DetailedOrderViewModel> GetDetailedOrder(int id)

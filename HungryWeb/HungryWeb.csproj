@@ -207,15 +207,6 @@
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\FoodImagesController.cs" />
     <Compile Include="Controllers\OrdenesController.cs" />
-    <Compile Include="Migrations\201704020713129_InitialCreate.cs" />
-    <Compile Include="Migrations\201704020713129_InitialCreate.Designer.cs">
-      <DependentUpon>201704020713129_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704020714430_add_ImageNumber_Mapings.cs" />
-    <Compile Include="Migrations\201704020714430_add_ImageNumber_Mapings.Designer.cs">
-      <DependentUpon>201704020714430_add_ImageNumber_Mapings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\StoreContext\Alimentos.cs" />
     <Compile Include="Models\StoreContext\Categorias.cs" />
     <Compile Include="Models\StoreContext\Comensales.cs" />
@@ -224,7 +215,6 @@
     <Compile Include="Models\StoreContext\FoodImages.cs" />
     <Compile Include="Models\StoreContext\Menu.cs" />
     <Compile Include="Models\StoreContext\Ordenes.cs" />
-    <Compile Include="Context\StoreContext.cs" />
     <Compile Include="Models\StoreContext\Tipos.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -351,17 +341,12 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\ImagenesProducto\Bocadillos\" />
     <Folder Include="Content\ImagenesProducto\Complementos\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704020713129_InitialCreate.resx">
-      <DependentUpon>201704020713129_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704020714430_add_ImageNumber_Mapings.resx">
-      <DependentUpon>201704020714430_add_ImageNumber_Mapings.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Servicios\ApiConfig.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ApiConfig.Designer.cs</LastGenOutput>

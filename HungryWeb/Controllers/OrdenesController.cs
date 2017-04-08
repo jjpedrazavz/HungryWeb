@@ -11,6 +11,7 @@ using HungryWeb.ViewModels;
 using HungryWeb.Contratos;
 using HungryWeb.Servicios;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace HungryWeb.Controllers
 {
@@ -25,7 +26,7 @@ namespace HungryWeb.Controllers
            return View(orders);
         }
 
-        // GET: Ordenes/Details/5
+        // GET: Ordenes/edit/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,6 +35,9 @@ namespace HungryWeb.Controllers
             }
 
             DetailedOrderViewModel details = await _service.GetDetailedOrder(id.Value);
+
+
+            Debug.WriteLine("Valor de la orden: "+details.OrdenID);
 
             if (details == null)
             {
@@ -97,6 +101,13 @@ namespace HungryWeb.Controllers
 
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(DetailedOrderViewModel viewModel)
+        {
+            return await _service.UpdateItem(viewModel) ? RedirectToAction("Index") : RedirectToAction("Details", viewModel.OrdenID);
         }
 
         // POST: Ordenes/Create

@@ -15,7 +15,7 @@ namespace HungryWeb.Contratos
     {
         Task<bool> CreateItem(OrderViewModel orden);
 
-        Task<bool> UpdateItem(int id, OrderViewModel orden);
+        Task<bool> UpdateItem(DetailedOrderViewModel orden);
 
         Task<bool> DeleteItem(int id);
 

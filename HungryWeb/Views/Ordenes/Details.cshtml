@@ -1,19 +1,38 @@
 ﻿@model HungryWeb.ViewModels.DetailedOrderViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Details</h2>
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit","Ordenes",Model,FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Orden detallada</h4>
+        <hr />
+        @Html.Partial("_DetailedAndDeleteView", Model)
+
+        <div id="changeState" class="form-group">
+            @Html.DropDownListFor(md => md.EstadoID, new SelectList(Model.estadosList, "EstadoID", "Descripcion", ""), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(md => md.EstadoID, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
 
 <div>
-    @Html.Partial("_DetailedAndDeleteView", Model)
-    <hr />
-    <div id="changeState">
-        <button type="button" class="btn btn-primary float-md-right">Cambiar estado</button>
-    </div>
-    <br />
-</div>
-<p>
     @Html.ActionLink("Back to List", "Index")
-</p>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

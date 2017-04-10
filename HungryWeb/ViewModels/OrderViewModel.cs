@@ -20,7 +20,7 @@ namespace HungryWeb.ViewModels
         [Required]
         public int EstadoID { get; set; }
 
-        public Dictionary<int, MenuViewModel> menuSeleccionado { get; set; }
+        public IList<MenuViewModel> menuSeleccionado { get; set; }
 
         public SelectList Estados { get; set; }
 

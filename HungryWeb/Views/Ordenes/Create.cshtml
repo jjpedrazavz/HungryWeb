@@ -1,0 +1,110 @@
+﻿@model HungryWeb.ViewModels.OrderViewModel
+@using System.Linq.Expressions;
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Ingrese La informacion de su orden.</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComensalID, htmlAttributes: new { @class = "label-control col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ComensalID, "", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ComensalID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseSopas" aria-expanded="false" aria-controls="collapseSopas">Sopas</button>
+
+        <div class="form-group collapse" id="collapseSopas">
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => Model.menuSeleccionado[0].AlimentoID , Model.MenusSeleccionar[0], "Seleccione una Sopa", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => Model.menuSeleccionado[0].AlimentoID, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(m => Model.menuSeleccionado[0].Cantidad, Constantes.CantidadAlimentos, "Seleccione una Cantidad", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => Model.menuSeleccionado[0].Cantidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapsePlatoFuerte" aria-expanded="false" aria-controls="collapsePlatoFuerte">Plato Fuerte</button>
+
+        <div class="form-group collapse" id="collapsePlatoFuerte">
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.menuSeleccionado[1].AlimentoID, Model.MenusSeleccionar[1], "Seleccione una Sopa", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.menuSeleccionado[1].AlimentoID, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.menuSeleccionado[1].Cantidad, Constantes.CantidadAlimentos, "Seleccione una Cantidad", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.menuSeleccionado[1].Cantidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+
+
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseBebidas" aria-expanded="false" aria-controls="collapseBebidas">Bebidas</button>
+
+    <div class="form-group collapse" id="collapseBebidas">
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.menuSeleccionado[2].AlimentoID, Model.MenusSeleccionar[2], "Seleccione una Sopa", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.menuSeleccionado[2].AlimentoID, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.menuSeleccionado[2].Cantidad, Constantes.CantidadAlimentos, "Seleccione una Cantidad", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.menuSeleccionado[2].Cantidad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapsePostres" aria-expanded="false" aria-controls="collapsePostres">Postres</button>
+
+    <div class="form-group collapse" id="collapsePostres">
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.menuSeleccionado[3].AlimentoID, Model.MenusSeleccionar[3], "Seleccione una Sopa", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.menuSeleccionado[3].AlimentoID, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.menuSeleccionado[3].Cantidad, Constantes.CantidadAlimentos, "Seleccione una Cantidad", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.menuSeleccionado[3].Cantidad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseComplemento" aria-expanded="false" aria-controls="collapseComplemento">Complementos</button>
+
+    <div class="form-group collapse" id="collapseComplemento">
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.menuSeleccionado[4].AlimentoID, Model.MenusSeleccionar[4], "Seleccione una Sopa", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.menuSeleccionado[4].AlimentoID, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.menuSeleccionado[4].Cantidad, Constantes.CantidadAlimentos, "Seleccione una Cantidad", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.menuSeleccionado[4].Cantidad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapsebocadillo" aria-expanded="false" aria-controls="collapsebocadillo">Bocadillos</button>
+
+    <div class="form-group collapse" id="collapsebocadillo">
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.menuSeleccionado[5].AlimentoID, Model.MenusSeleccionar[5], "Seleccione una Sopa", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.menuSeleccionado[5].AlimentoID, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.menuSeleccionado[5].Cantidad, Constantes.CantidadAlimentos, "Seleccione una Cantidad", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.menuSeleccionado[5].Cantidad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default"/>
+            </div>
+        </div>
+     
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -20,14 +20,7 @@ namespace HungryWeb.ViewModels
         [Required]
         public int EstadoID { get; set; }
 
-        public int sopaID { get; set; }
-        public int platoFuerteID { get; set; }
-        public int bebidaID { get; set; }
-        public int postreID { get; set; }
-        public int complementoID { get; set; }
-
-        public int bocadilloID { get; set; }
-
+        public IList<MenuViewModel> menuSeleccionado { get; set; }
 
         public SelectList Estados { get; set; }
 

@@ -237,6 +237,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\FoodViewModel.cs" />
     <Compile Include="ViewModels\DetailedOrderViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\SlimOrdersViewModel.cs" />
   </ItemGroup>
@@ -336,6 +337,7 @@
     <Content Include="Views\FoodImages\Index.cshtml" />
     <Content Include="Views\Shared\_DetailedAndDeleteView.cshtml" />
     <Content Include="Views\Ordenes\Details.cshtml" />
+    <Content Include="Views\Ordenes\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

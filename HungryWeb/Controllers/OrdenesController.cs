@@ -18,6 +18,11 @@ namespace HungryWeb.Controllers
     {
         private readonly IServiceOrders _service = new ServiceOrders();
 
+        public OrdenesController()
+        {
+
+        }
+
         // GET: Ordenes
         public async Task<ActionResult> Index()
         {
@@ -47,10 +52,19 @@ namespace HungryWeb.Controllers
         public async Task<ActionResult> Create()
         {
             OrderViewModel viewModel = await _service.GetCreateOrderForm();
-
+            viewModel.menuSeleccionado = new List<MenuViewModel>();
 
             viewModel.Estados = new SelectList(viewModel.EstadosList, "EstadoID", "Descripcion", "");
+
             viewModel.MenusSeleccionar = new List<SelectList>();
+
+            viewModel.menuSeleccionado = new List<MenuViewModel>();
+
+            for (int i = 0; i < 6; i++)
+            {
+               viewModel.menuSeleccionado.Add(new MenuViewModel());
+            }
+            
 
             var sopas = (from element in viewModel.AlimentosList
                          where element.TipoId == 1
@@ -96,6 +110,8 @@ namespace HungryWeb.Controllers
             viewModel.MenusSeleccionar.Add(new SelectList(bocadillos, "ID", "Nombre", ""));
 
 
+            Debug.WriteLine("Tamaño viewModel: " + viewModel.menuSeleccionado.Count);
+
             return View(viewModel);
         }
 
@@ -111,7 +127,7 @@ namespace HungryWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(OrderViewModel viewModel)
         {
-
+          
             return await _service.CreateItem(viewModel) ? RedirectToAction("Index") : RedirectToAction("Create");
   
         }

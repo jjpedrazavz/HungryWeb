@@ -6,14 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using HungryWeb.Models3;
+using HungryWeb.Models;
 
 namespace HungryWeb.Controllers
 {
     public class FoodImagesController : Controller
     {
-        private StoreContext db = new StoreContext();
-
+        /*
         // GET: FoodImages
         public ActionResult Index()
         {
@@ -110,14 +109,7 @@ namespace HungryWeb.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        */
+       
     }
 }

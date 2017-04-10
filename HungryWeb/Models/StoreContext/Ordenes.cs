@@ -1,31 +1,23 @@
-namespace HungryWeb.Models3
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
+namespace HungryWeb.Models
+{
     public partial class Ordenes
     {
-        
         public Ordenes()
         {
             Menu = new HashSet<Menu>();
         }
 
-
-        [Key]
-        public int OrdenID { get; set; }
-
-        public int ComensalID { get; set; }
-
-        public int EstadoID { get; set; }
-
-        public virtual Comensales Comensales { get; set; }
-
-        public virtual Estado Estado { get; set; }
+        public int OrdenId { get; set; }
+        public DateTime OrdFecha { get; set; }
+        public int ComensalId { get; set; }
+        public int EstadoId { get; set; }
 
         public virtual ICollection<Menu> Menu { get; set; }
+        public virtual Comensales Comensal { get; set; }
+        public virtual Estado Estado { get; set; }
     }
 }

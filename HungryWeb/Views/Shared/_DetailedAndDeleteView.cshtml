@@ -1,14 +1,13 @@
 ﻿@model HungryWeb.ViewModels.DetailedOrderViewModel
 
 <div>
-    <h4>Orden</h4>
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.OrdenID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.comensal.ComensalID)
+                @Html.DisplayNameFor(model => model.comensal.ComensalId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.estado.Descripcion)
@@ -19,7 +18,7 @@
                 @Html.DisplayFor(model => model.OrdenID)
             </td>
             <td>
-                @Html.DisplayFor(model => model.comensal.ComensalID)
+                @Html.DisplayFor(model => model.comensal.ComensalId)
             </td>
             <td>
                 @Html.DisplayFor(model => model.estado.Descripcion)
@@ -39,93 +38,49 @@
                 @Html.DisplayName("Platillo")
             </th>
             <th>
-                @Html.DisplayName("Precio")
+                @Html.DisplayName("Cantidad")
+            </th>
+            <th>
+                @Html.DisplayName("Precio Unitario")
+            </th>
+            <th>
+                @Html.DisplayName("Acumulado")
             </th>
         </tr>
 
-        <tr>
-            @if (Model.sopa != null)
-            {
+     @{double acumulado = 0;
+
+         foreach (var item in Model.menu)
+         {
+             acumulado = (double)item.Alimento.Precio * item.Quantity.Value;
+           <tr>
                 <td>
-                    @Html.DisplayFor(model => model.sopa.Nombre)
+                    @Html.DisplayFor(m => item.Alimento.Nombre)
                 </td>
-                    <td>
-                        @Html.DisplayFor(model => model.sopa.Precio)
-                    </td>
-
-            }
-
-        </tr>
-
-        <tr>
-            @if (Model.platoFuerte != null)
-            {
+               <td>
+                   @Html.DisplayFor(m => item.Quantity)
+               </td>
                 <td>
-                    @Html.DisplayFor(model => model.platoFuerte.Nombre)
+                    @Html.DisplayFor(m => item.Alimento.Precio)
                 </td>
-                    <td>
-                        @Html.DisplayFor(model => model.platoFuerte.Precio)
-                    </td>
-            }
-        </tr>
+               <td>
+                   @Html.DisplayFor(m => acumulado)
+               </td>
+          </tr>
+         }
 
-        <tr>
-            @if (Model.bebida != null)
-            {
-                <td>
-                    @Html.DisplayFor(model => model.bebida.Nombre)
-                </td>
-                    <td>
-                        @Html.DisplayFor(model => model.bebida.Precio)
-                    </td>
-            }
-        </tr>
-
-        <tr>
-            @if (Model.postre != null)
-            {
-                <td>
-                    @Html.DisplayFor(model => model.postre.Nombre)
-                </td>
-                    <td>
-                        @Html.DisplayFor(model => model.postre.Precio)
-                    </td>
-            }
-        </tr>
-
-        <tr>
-            @if (Model.complemento != null)
-            {
-                <td>
-                    @Html.DisplayFor(model => model.complemento.Nombre)
-                </td>
-                    <td>
-                        @Html.DisplayFor(model => model.complemento.Precio)
-                    </td>
-            }
-        </tr>
-
-        <tr>
-            @if (Model.bocadillo != null)
-            {
-                <td>
-                    @Html.DisplayFor(model => model.bocadillo.Nombre)
-                </td>
-                    <td>
-                        @Html.DisplayFor(model => model.bocadillo.Precio)
-                    </td>
-            }
-        </tr>
-
-
+    }
         <tr>
             <td>
                 <strong>  Total: </strong>
             </td>
+            <td></td>
+            <td></td>
             <td>
                 <strong> @Model.totalMenu </strong>
             </td>
         </tr>
+
 
     </table>
 

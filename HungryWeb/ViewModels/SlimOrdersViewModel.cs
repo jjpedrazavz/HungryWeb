@@ -15,6 +15,9 @@ namespace HungryWeb.ViewModels
         [Display(Name = "Comensal")]
         public int ComensalID { get; set; }
 
+        [Display(Name = "Fecha de la Orden")]
+        public DateTime OrdenFecha { get; set; }
+
         [Required]
         [Display(Name = "Estatus")]
         public string EstadoDescripcion { get; set; }

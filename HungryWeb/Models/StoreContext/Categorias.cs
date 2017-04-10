@@ -1,11 +1,8 @@
-namespace HungryWeb.Models3
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+﻿using System;
+using System.Collections.Generic;
 
+namespace HungryWeb.Models
+{
     public partial class Categorias
     {
         public Categorias()
@@ -13,12 +10,7 @@ namespace HungryWeb.Models3
             Alimentos = new HashSet<Alimentos>();
         }
 
-        [Key]
-        public int CategoriaID { get; set; }
-
-        [Required]
-        [StringLength(80)]
-        [Display(Name = "Categoria")]
+        public int CategoriaId { get; set; }
         public string Nombre { get; set; }
 
         public virtual ICollection<Alimentos> Alimentos { get; set; }

@@ -47,9 +47,10 @@ namespace HungryWeb.Controllers
         public async Task<ActionResult> Create()
         {
             OrderViewModel viewModel = await _service.GetCreateOrderForm();
-
+            viewModel.menuSeleccionado = new Dictionary<int, MenuViewModel>();
 
             viewModel.Estados = new SelectList(viewModel.EstadosList, "EstadoID", "Descripcion", "");
+
             viewModel.MenusSeleccionar = new List<SelectList>();
 
             var sopas = (from element in viewModel.AlimentosList

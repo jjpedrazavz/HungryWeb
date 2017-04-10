@@ -1,12 +1,9 @@
-namespace HungryWeb.Models3
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
-    [Table("Estado")]
+namespace HungryWeb.Models
+{
     public partial class Estado
     {
         public Estado()
@@ -14,14 +11,10 @@ namespace HungryWeb.Models3
             Ordenes = new HashSet<Ordenes>();
         }
 
-        public int EstadoID { get; set; }
-
-        [Required]
-        [StringLength(20)]
-        [Display(Name ="Estatus")]
+        public int EstadoId { get; set; }
         public string Descripcion { get; set; }
 
-
+        [JsonIgnore]
         public virtual ICollection<Ordenes> Ordenes { get; set; }
     }
 }

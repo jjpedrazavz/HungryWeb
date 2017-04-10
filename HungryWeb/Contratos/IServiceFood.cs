@@ -1,4 +1,4 @@
-﻿using HungryWeb.Models3;
+﻿using HungryWeb.Models;
 using HungryWeb.ViewModels;
 using System;
 using System.Collections.Generic;

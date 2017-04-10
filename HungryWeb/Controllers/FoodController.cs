@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using HungryWeb.Models3;
 using HungryWeb.ViewModels;
 using HungryWeb.Contratos;
 using HungryWeb.Servicios;

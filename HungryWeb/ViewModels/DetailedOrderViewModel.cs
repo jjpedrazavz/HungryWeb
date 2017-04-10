@@ -1,4 +1,4 @@
-﻿using HungryWeb.Models3;
+﻿using HungryWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,17 +19,7 @@ namespace HungryWeb.ViewModels
 
         public Estado estado { get; set; }
 
-        public Alimentos sopa { get; set; }
-
-        public Alimentos platoFuerte { get; set; }
-
-        public Alimentos bebida { get; set; }
-
-        public Alimentos postre { get; set; }
-
-        public Alimentos complemento { get; set; }
-
-        public Alimentos bocadillo { get; set; }
+        public IEnumerable<Menu> menu { get; set; }
 
         public Comensales comensal { get; set; }
 

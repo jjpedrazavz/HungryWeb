@@ -115,6 +115,15 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/FoodImages.
+        /// </summary>
+        internal static string GetAllFoodImages {
+            get {
+                return ResourceManager.GetString("GetAllFoodImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Ordenes/PostOrdenes.
         /// </summary>
         internal static string GetCreateOrdersForm {
@@ -133,6 +142,24 @@ namespace HungryWeb.Servicios {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/FoodImages/{0}.
+        /// </summary>
+        internal static string GetImage {
+            get {
+                return ResourceManager.GetString("GetImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/FoodImages/GetMaapings{0}.
+        /// </summary>
+        internal static string GetImageMappings {
+            get {
+                return ResourceManager.GetString("GetImageMappings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Ordenes/.
         /// </summary>
         internal static string GetSlimOrders {
@@ -147,6 +174,15 @@ namespace HungryWeb.Servicios {
         internal static string UpdateFood {
             get {
                 return ResourceManager.GetString("UpdateFood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/Alimentos/PutFoodImages.
+        /// </summary>
+        internal static string UpdateImage {
+            get {
+                return ResourceManager.GetString("UpdateImage", resourceCulture);
             }
         }
         

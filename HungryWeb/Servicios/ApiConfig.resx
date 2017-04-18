@@ -135,17 +135,29 @@
   <data name="GetAllFood" xml:space="preserve">
     <value>http://192.168.15.4:5000/api/Alimentos/</value>
   </data>
+  <data name="GetAllFoodImages" xml:space="preserve">
+    <value>http://192.168.15.4:5000/api/FoodImages</value>
+  </data>
   <data name="GetCreateOrdersForm" xml:space="preserve">
     <value>http://192.168.15.4:5000/api/Ordenes/PostOrdenes</value>
   </data>
   <data name="GetDetailedOrder" xml:space="preserve">
     <value>http://192.168.15.4:5000/api/Ordenes/{0}</value>
   </data>
+  <data name="GetImage" xml:space="preserve">
+    <value>http://192.168.15.4:5000/api/FoodImages/{0}</value>
+  </data>
+  <data name="GetImageMappings" xml:space="preserve">
+    <value>http://192.168.15.4:5000/api/FoodImages/GetMaapings{0}</value>
+  </data>
   <data name="GetSlimOrders" xml:space="preserve">
     <value>http://192.168.15.4:5000/api/Ordenes/</value>
   </data>
   <data name="UpdateFood" xml:space="preserve">
     <value>http://192.168.15.4:5000/api/Alimentos/UpdateAlimentos</value>
+  </data>
+  <data name="UpdateImage" xml:space="preserve">
+    <value>http://192.168.15.4:5000/api/Alimentos/PutFoodImages</value>
   </data>
   <data name="UpdateOrder" xml:space="preserve">
     <value>http://192.168.15.4:5000/api/Ordenes/OrdenEdit</value>

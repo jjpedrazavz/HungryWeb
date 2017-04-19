@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Text;
 using HungryWeb.Contratos;
 using HungryWeb.Models;
+using System.Diagnostics;
 
 namespace HungryWeb.Servicios
 {
@@ -69,9 +70,29 @@ namespace HungryWeb.Servicios
         }
 
 
-        public Task<bool> SaveImage(FoodImages image)
+        public async Task<string> SaveImage(FoodImages image)
         {
-            throw new NotImplementedException();
+            using (HttpClient client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri(ApiConfig.UploadImage);
+
+
+                HttpResponseMessage response = await client.PostAsync(ApiConfig.UploadImage,
+                    new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(image), Encoding.UTF8, "application/json"));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+                    var nameFile = Newtonsoft.Json.JsonConvert.DeserializeObject<string>(data);
+
+                    Debug.WriteLine("Valor devuelto: " + nameFile);
+                    return nameFile;
+                }
+
+                return "";
+
+            }
         }
 
         public async Task<bool> UpdateImage(FoodImages image)
@@ -92,9 +113,6 @@ namespace HungryWeb.Servicios
 
         }
 
-        Task<string> IServiceFoodImages.SaveImage(FoodImages image)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

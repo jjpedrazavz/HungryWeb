@@ -3,6 +3,7 @@ using HungryWeb.Models;
 using HungryWeb.Servicios;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -33,7 +34,8 @@ namespace HungryWeb.Controllers
 
             return View(imagenesList);
         }
-
+        
+        
         // GET: FoodImages/Upload
         public ActionResult Upload()
         {
@@ -42,14 +44,18 @@ namespace HungryWeb.Controllers
 
         // POST: FoodImages/Upload
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Upload(HttpPostedFileBase file)
         {
 
             bool valid = true;
             string InvalidFile = "";
 
-            if(file != null)
+            Debug.WriteLine("entrando a la llamada");
+
+            if (file != null)
             {
+                Debug.WriteLine("tomo la imagen: "+file.FileName);
 
                 if (!ValidateFile(file))
                 {
@@ -90,7 +96,7 @@ namespace HungryWeb.Controllers
         
                 duplicateFile = await serviceImages.SaveImage(ImageToAdd);
 
-                if (string.IsNullOrWhiteSpace(duplicateFile))
+                if (!string.IsNullOrWhiteSpace(duplicateFile))
                 {
                     ModelState.AddModelError("FileName", "El archivo:" + duplicateFile + "Ya existe!");
                     return View();
@@ -135,7 +141,7 @@ namespace HungryWeb.Controllers
         {
             string fileExtension = System.IO.Path.GetExtension(file.FileName).ToLower();
 
-            string[] allowedFileTypes = { ".gif", ".png", ".jpeg", "jpg" };
+            string[] allowedFileTypes = { ".gif", ".png", ".jpeg", ".jpg" };
 
 
             //verificamos tamaño y extension

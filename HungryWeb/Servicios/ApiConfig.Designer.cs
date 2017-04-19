@@ -194,5 +194,14 @@ namespace HungryWeb.Servicios {
                 return ResourceManager.GetString("UpdateOrder", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a http://192.168.15.4:5000/api/FoodImages/PostFoodImages.
+        /// </summary>
+        internal static string UploadImage {
+            get {
+                return ResourceManager.GetString("UploadImage", resourceCulture);
+            }
+        }
     }
 }

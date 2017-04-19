@@ -1,13 +1,13 @@
-﻿@model IEnumerable<HungryWeb.Models3.FoodImages>
+﻿@model IEnumerable<HungryWeb.Models.FoodImages>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Imagenes";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Upload New Image", "Upload")
 </p>
 <table class="table">
     <tr>
@@ -23,9 +23,13 @@
             @Html.DisplayFor(modelItem => item.NameFile)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @if (!string.IsNullOrWhiteSpace(item.NameFile))
+            {
+                <img src="@(Url.Content(Constantes.ImagePathDefault)+item.NameFile)" />
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

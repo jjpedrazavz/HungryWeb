@@ -278,6 +278,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\HungryWeb20170419090103 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -329,7 +330,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Food\Create.cshtml" />
-    <Content Include="Views\Food\Delete.cshtml" />
+    <Content Include="Views\Food\Desactivate.cshtml" />
     <Content Include="Views\Food\Edit.cshtml" />
     <Content Include="Views\Food\Index.cshtml" />
     <Content Include="Views\Shared\_CrearEditarAlimento.cshtml" />

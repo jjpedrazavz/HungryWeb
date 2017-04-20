@@ -52,14 +52,13 @@ namespace HungryWeb.Servicios
             }
         }
 
-        public async Task<bool> DeleteItem(int id)
+        public async Task<bool> DesactivateItem(int id)
         {
             using (HttpClient client = new HttpClient())
             {
 
-                client.BaseAddress = new Uri(string.Format(ApiConfig.DeleteAlimento, id));
-                HttpResponseMessage response = await client.DeleteAsync(string.Format(ApiConfig.DeleteAlimento, id));
-
+                client.BaseAddress = new Uri(string.Format(ApiConfig.DesactivateAlimento, id));
+                HttpResponseMessage response = await client.PutAsync(string.Format(ApiConfig.DesactivateAlimento, id),null);
                 return response.StatusCode == System.Net.HttpStatusCode.OK ? true : false;
 
 

@@ -18,7 +18,7 @@ namespace HungryWeb.Contratos
 
         Task<bool> UpdateImage(FoodImages image);
 
-        Task<bool> DeleteImage(FoodImages image);
+        Task<bool> DeleteImage(int id);
 
     }
 }

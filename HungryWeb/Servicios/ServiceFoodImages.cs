@@ -15,9 +15,21 @@ namespace HungryWeb.Servicios
 {
     public class ServiceFoodImages : IServiceFoodImages
     {
-        public Task<bool> DeleteImage(FoodImages image)
+        public async Task<bool> DeleteImage(int idImage)
         {
-            throw new NotImplementedException();
+           
+            using(HttpClient client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri(string.Format(ApiConfig.DeleteFoodImage, idImage));
+
+                HttpResponseMessage response = await client.DeleteAsync(string.Format(ApiConfig.DeleteFoodImage,idImage));
+
+
+                return response.StatusCode == System.Net.HttpStatusCode.NoContent ? true : false;
+
+
+            }
         }
 
         public async Task<IEnumerable<FoodImages>> GetFoodImages()

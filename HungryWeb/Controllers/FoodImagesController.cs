@@ -51,12 +51,8 @@ namespace HungryWeb.Controllers
             bool valid = true;
             string InvalidFile = "";
 
-            Debug.WriteLine("entrando a la llamada");
-
             if (file != null)
             {
-                Debug.WriteLine("tomo la imagen: "+file.FileName);
-
                 if (!ValidateFile(file))
                 {
                     valid = false;
@@ -127,9 +123,9 @@ namespace HungryWeb.Controllers
 
 
             //verificamos lo mismo.
-            if (img.Width > 100)
+            if (img.Width > 190)
             {
-                img.Resize(100, img.Height);
+                img.Resize(190, img.Height);
             }
 
             img.Save(Constantes.ImagePathDefault + file.FileName);
@@ -201,19 +197,10 @@ namespace HungryWeb.Controllers
         {
             FoodImages image = await serviceImages.GetOne(id);
 
-            //buscamos todos los mappings que usan la imagen
-
-            var mappings = image.FoodImageMapping.Where(p => p.AlimentosImageId == id);
-
-            foreach (var item in mappings)
-            {
-                item.AlimentosImageId = null;
-            }
-
             System.IO.File.Delete(Request.MapPath(Constantes.ImagePathDefault + image.NameFile));
 
 
-           return await serviceImages.DeleteImage(image) ? RedirectToAction("Index") : RedirectToAction("Delete");
+           return await serviceImages.DeleteImage(id) ? RedirectToAction("Index") : RedirectToAction("Delete");
 
 
         }

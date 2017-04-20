@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Tipo.Nombre)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estatus)
+        </th>
         <th></th>
     </tr>
 
@@ -41,8 +44,11 @@
             @Html.DisplayFor(modelItem => item.Tipo.Nombre)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.estatus)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Desactivate", "Desactivate", new { id=item.Id })
         </td>
     </tr>
 }

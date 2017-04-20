@@ -3,6 +3,7 @@ using HungryWeb.Models;
 using HungryWeb.Servicios;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -33,7 +34,8 @@ namespace HungryWeb.Controllers
 
             return View(imagenesList);
         }
-
+        
+        
         // GET: FoodImages/Upload
         public ActionResult Upload()
         {
@@ -42,15 +44,15 @@ namespace HungryWeb.Controllers
 
         // POST: FoodImages/Upload
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Upload(HttpPostedFileBase file)
         {
 
             bool valid = true;
             string InvalidFile = "";
 
-            if(file != null)
+            if (file != null)
             {
-
                 if (!ValidateFile(file))
                 {
                     valid = false;
@@ -90,7 +92,7 @@ namespace HungryWeb.Controllers
         
                 duplicateFile = await serviceImages.SaveImage(ImageToAdd);
 
-                if (string.IsNullOrWhiteSpace(duplicateFile))
+                if (!string.IsNullOrWhiteSpace(duplicateFile))
                 {
                     ModelState.AddModelError("FileName", "El archivo:" + duplicateFile + "Ya existe!");
                     return View();
@@ -121,9 +123,9 @@ namespace HungryWeb.Controllers
 
 
             //verificamos lo mismo.
-            if (img.Width > 100)
+            if (img.Width > 190)
             {
-                img.Resize(100, img.Height);
+                img.Resize(190, img.Height);
             }
 
             img.Save(Constantes.ImagePathDefault + file.FileName);
@@ -135,7 +137,7 @@ namespace HungryWeb.Controllers
         {
             string fileExtension = System.IO.Path.GetExtension(file.FileName).ToLower();
 
-            string[] allowedFileTypes = { ".gif", ".png", ".jpeg", "jpg" };
+            string[] allowedFileTypes = { ".gif", ".png", ".jpeg", ".jpg" };
 
 
             //verificamos tamaño y extension
@@ -195,19 +197,10 @@ namespace HungryWeb.Controllers
         {
             FoodImages image = await serviceImages.GetOne(id);
 
-            //buscamos todos los mappings que usan la imagen
-
-            var mappings = image.FoodImageMapping.Where(p => p.AlimentosImageId == id);
-
-            foreach (var item in mappings)
-            {
-                item.AlimentosImageId = null;
-            }
-
             System.IO.File.Delete(Request.MapPath(Constantes.ImagePathDefault + image.NameFile));
 
 
-           return await serviceImages.DeleteImage(image) ? RedirectToAction("Index") : RedirectToAction("Delete");
+           return await serviceImages.DeleteImage(id) ? RedirectToAction("Index") : RedirectToAction("Delete");
 
 
         }

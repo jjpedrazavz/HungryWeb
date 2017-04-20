@@ -14,7 +14,7 @@ namespace HungryWeb.Contratos
 
         Task<bool> UpdateItem(FoodViewModel orden);
 
-        Task<bool> DeleteItem(int id);
+        Task<bool> DesactivateItem(int id);
 
         Task<IEnumerable<Alimentos>> GetAllFood();
 

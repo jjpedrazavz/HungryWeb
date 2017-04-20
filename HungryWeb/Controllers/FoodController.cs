@@ -76,8 +76,13 @@ namespace HungryWeb.Controllers
             }
 
             var foodItem = await _service.GetDetailedFood(id.Value);
+
             foodItem.ImagenesSeleccionadas = new List<SelectList>();
+
+            if(foodItem.SelectedImage != 0)
             foodItem.ImagenesSeleccionadas.Add(new SelectList(foodItem.ImagenesStock, "Id", "NameFile", foodItem.SelectedImage));
+            else
+                foodItem.ImagenesSeleccionadas.Add(new SelectList(foodItem.ImagenesStock, "Id", "NameFile"));
 
             return View(foodItem);
         }
@@ -92,8 +97,8 @@ namespace HungryWeb.Controllers
 
         }
 
-        // GET: Food/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        // GET: Food/Desactivate/5
+        public async Task<ActionResult> Desactivate(int? id)
         {
             if (id == null)
             {
@@ -105,12 +110,12 @@ namespace HungryWeb.Controllers
             return View(alimento);
         }
 
-        // POST: Food/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Food/Desactivate/5
+        [HttpPost, ActionName("Desactivate")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DesactivateConfim(int id)
         {
-            return await _service.DeleteItem(id) ? RedirectToAction("Index") : RedirectToAction("Delete", id);
+            return await _service.DesactivateItem(id) ? RedirectToAction("Index") : RedirectToAction("Delete", id);
         }
 
 

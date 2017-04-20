@@ -22,6 +22,8 @@ namespace HungryWeb.ViewModels
 
         public int SelectedImage { get; set; }
 
+        public bool estatus { get; set; }
+
 
         public List<SelectList> ImagenesSeleccionadas { get; set; }
 

@@ -118,48 +118,54 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CrearAlimentoConfirm" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Alimentos/CrearAlimentoConfirm</value>
+    <value>http://192.168.15.5:5000/api/Alimentos/CrearAlimentoConfirm</value>
   </data>
   <data name="CreateAlimento" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Alimentos/CrearAlimento</value>
+    <value>http://192.168.15.5:5000/api/Alimentos/CrearAlimento</value>
   </data>
-  <data name="DeleteAlimento" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Alimentos/DeleteAlimentos/{0}</value>
+  <data name="DeleteFoodImage" xml:space="preserve">
+    <value>http://192.168.15.5:5000/api/FoodImages/DeleteFoodImages/{0}</value>
   </data>
   <data name="DeleteOrder" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Ordenes/DeleteOrdenes/{0}</value>
+    <value>http://192.168.15.5:5000/api/Ordenes/DeleteOrdenes/{0}</value>
+  </data>
+  <data name="DesactivateAlimento" xml:space="preserve">
+    <value>http://192.168.15.5:5000/api/Alimentos/DesactivateAlimento/{0}</value>
   </data>
   <data name="GetAlimento" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Alimentos/{0}</value>
+    <value>http://192.168.15.5:5000/api/Alimentos/{0}</value>
   </data>
   <data name="GetAllFood" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Alimentos/</value>
+    <value>http://192.168.15.5:5000/api/Alimentos/</value>
   </data>
   <data name="GetAllFoodImages" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/FoodImages</value>
+    <value>http://192.168.15.5:5000/api/FoodImages</value>
   </data>
   <data name="GetCreateOrdersForm" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Ordenes/PostOrdenes</value>
+    <value>http://192.168.15.5:5000/api/Ordenes/PostOrdenes</value>
   </data>
   <data name="GetDetailedOrder" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Ordenes/{0}</value>
+    <value>http://192.168.15.5:5000/api/Ordenes/{0}</value>
   </data>
   <data name="GetImage" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/FoodImages/{0}</value>
+    <value>http://192.168.15.5:5000/api/FoodImages/{0}</value>
   </data>
   <data name="GetImageMappings" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/FoodImages/GetMaapings{0}</value>
+    <value>http://192.168.15.5:5000/api/FoodImages/GetMaapings/{0}</value>
   </data>
   <data name="GetSlimOrders" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Ordenes/</value>
+    <value>http://192.168.15.5:5000/api/Ordenes/</value>
   </data>
   <data name="UpdateFood" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Alimentos/UpdateAlimentos</value>
+    <value>http://192.168.15.5:5000/api/Alimentos/UpdateAlimentos</value>
   </data>
   <data name="UpdateImage" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Alimentos/PutFoodImages</value>
+    <value>http://192.168.15.5:5000/api/Alimentos/PutFoodImages</value>
   </data>
   <data name="UpdateOrder" xml:space="preserve">
-    <value>http://192.168.15.4:5000/api/Ordenes/OrdenEdit</value>
+    <value>http://192.168.15.5:5000/api/Ordenes/OrdenEdit</value>
+  </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>http://192.168.15.5:5000/api/FoodImages/PostFoodImages</value>
   </data>
 </root>
